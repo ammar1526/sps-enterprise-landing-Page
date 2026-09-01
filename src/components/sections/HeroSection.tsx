@@ -124,38 +124,38 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-slate-950/20" />
 
           <div className="relative z-10 flex h-full items-center px-6 sm:px-10 lg:px-20">
-            <div className="max-w-2xl ml-6 sm:ml-10 lg:ml-32 xl:ml-40">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+            <div className="max-w-4xl ml-6 sm:ml-10 lg:ml-32 xl:ml-40">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
                 {slide.title}
               </h1>
 
               {slide.subtext && (
-                <p className="mt-5 text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl">
+                <p className="mt-5 text-lg sm:text-xl lg:text-2xl text-slate-200 leading-relaxed max-w-3xl mb-8">
                   {slide.subtext}
                 </p>
               )}
 
               {slide.bulletPoints && (
-                <ul className="mt-5 space-y-2">
+                <ul className="mt-5 space-y-3 mb-8">
                   {slide.bulletPoints.map((point, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-2 text-base sm:text-lg text-slate-200"
+                      className="flex items-start gap-3 text-lg sm:text-xl lg:text-2xl text-slate-200"
                     >
-                      <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
+                      <span className="mt-3 h-2 w-2 shrink-0 rounded-full bg-blue-400" />
                       <span>{point}</span>
                     </li>
                   ))}
                 </ul>
               )}
 
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <button className="bg-[#07194a] hover:bg-[#1e40af] border-blue-950 text-white font-medium px-6 py-2.5 rounded-lg transition shadow-2xl">
+              <div className="mt-8 flex flex-wrap items-center gap-5">
+                <button className="bg-[#4d75e6] hover:bg-[#1e40af] border-blue-950 text-white font-semibold px-8 py-3.5 rounded-lg transition shadow-2xl text-lg">
                   {slide.primaryBtnText}
                 </button>
                 <button
                   onClick={() => handleSecondaryClick(slide)}
-                  className="bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-white font-medium px-6 py-2.5 rounded-lg transition"
+                  className="bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-white font-semibold px-8 py-3.5 rounded-lg transition text-lg"
                 >
                   {slide.secondaryBtnText}
                 </button>

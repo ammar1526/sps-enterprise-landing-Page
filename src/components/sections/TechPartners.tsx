@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 
 interface Partner {
@@ -13,131 +13,155 @@ const partners: Partner[] = [
   {
     name: "Lenovo",
     description: "Devices • Infrastructure • Computing",
-    image: "/images/lenovo.webp",
+    image: "/images/techpartners/lenovo.webp",
   },
   {
     name: "SAP",
     description: "Enterprise Resource Planning",
-    image: "/images/sap.webp",
+    image: "/images/techpartners/sap.webp",
   },
   {
     name: "Red Hat",
     description: "Open Source Cloud",
-    image: "/images/red-hat.webp",
+    image: "/images/techpartners/red-hat.webp",
   },
   {
     name: "Microsoft",
     description: "Cloud • Security • Productivity Solutions",
-    image: "/images/microsoft.webp",
+    image: "/images/techpartners/microsoft.webp",
   },
   {
     name: "Google",
     description: "Cloud • Data • Infrastructure",
-    image: "/images/google.webp",
+    image: "/images/techpartners/google.webp",
   },
   {
     name: "IBM Security",
     description: "Identity • Access & Zero Trust Solutions",
-    image: "/images/ibm1.webp",
+    image: "/images/techpartners/ibm-security.webp",
   },
   {
     name: "Juniper",
     description: "Networking • AI • Routing",
-    image: "/images/juniper-networks.webp",
+    image: "/images/techpartners/juniper-networks.webp",
   },
   {
     name: "Nutanix",
     description: "Hybrid Multicloud Infrastructure",
-    image: "/images/nutanix.webp",
+    image: "/images/techpartners/nutanix.webp",
   },
   {
     name: "Sophos",
     description: "Endpoint • Network Security",
-    image: "/images/sophos.webp",
+    image: "/images/techpartners/sophos.webp",
   },
   {
     name: "Keysight",
     description: "Design • Emulation • Test",
-    image: "/images/keysight.webp",
+    image: "/images/techpartners/keysight.webp",
   },
   {
     name: "Okta",
     description: "Identity • Access Management",
-    image: "/images/okta.webp",
+    image: "/images/techpartners/okta.webp",
   },
   {
     name: "Fortinet",
     description: "Firewall • Network Security",
-    image: "/images/fortinet.webp",
+    image: "/images/techpartners/fortinet.webp",
   },
   {
     name: "Schneider Electric",
     description: "Energy • Automation • Sustainability",
-    image: "/images/Schneider-Electric2.webp",
+    image: "/images/techpartners/Schneider-Electric2.webp",
   },
   {
     name: "Cyber GRX",
     description: "Third-Party Risk Management",
-    image: "/images/cyber-grx.webp",
+    image: "/images/techpartners/cyber-grx.webp",
   },
   {
     name: "Time stream",
     description: "Time-Series Database Analytics",
-    image: "/images/timestream.webp",
+    image: "/images/techpartners/timestream.webp",
   },
   {
     name: "Know Be 4",
     description: "Security Awareness Training",
-    image: "/images/knowBe4.webp",
+    image: "/images/techpartners/knowBe4.webp",
   },
   {
     name: "Tenable",
     description: "Vulnerability • Exposure Management",
-    image: "/images/tenable1.webp",
+    image: "/images/techpartners/tenable1.webp",
   },
   {
     name: "Fischer Identity",
     description: "Governance • Identity Lifecycle",
-    image: "/images/fischer-identity.webp",
+    image: "/images/techpartners/fischer-identity.webp",
   },
 ];
 
+const marqueePartners = [...partners, ...partners];
+
 export default function TechPartners() {
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const listRef = useRef<HTMLUListElement | null>(null);
+  const currentStepRef = useRef(0);
+
+  const CARD_WIDTH = 280;
+  const GAP = 24;
+  const STEP_SIZE = CARD_WIDTH + GAP;
+  const HOLD_DURATION = 3000;
+
+  const moveToStep = useCallback((step: number) => {
+    if (listRef.current) {
+      setIsTransitioning(true);
+      const xPos = -step * STEP_SIZE;
+      listRef.current.style.transition =
+        "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+      listRef.current.style.transform = `translateX(${xPos}px)`;
+
+      setActiveIndex(step % partners.length);
+
+      window.setTimeout(() => {
+        setIsTransitioning(false);
+        if (step >= partners.length) {
+          currentStepRef.current = 0;
+          if (listRef.current) {
+            listRef.current.style.transition = "none";
+            listRef.current.style.transform = "translateX(0px)";
+          }
+        }
+      }, 600);
+    }
+  }, []);
 
   useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-
-    const scrollStep = 2;
-    let animationFrameId: number;
-
-    const scroll = () => {
-      if (!isPaused && scrollContainer) {
-        if (
-          scrollContainer.scrollLeft + scrollContainer.clientWidth >=
-          scrollContainer.scrollWidth - 2
-        ) {
-          scrollContainer.scrollLeft = 0;
-        } else {
-          scrollContainer.scrollLeft += scrollStep;
-        }
-      }
-      animationFrameId = requestAnimationFrame(scroll);
-    };
-
-    animationFrameId = requestAnimationFrame(scroll);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isPaused]);
+    if (isPaused || isTransitioning) return;
+    const interval = setInterval(() => {
+      currentStepRef.current += 1;
+      moveToStep(currentStepRef.current);
+    }, HOLD_DURATION);
+    return () => clearInterval(interval);
+  }, [isPaused, isTransitioning, moveToStep]);
 
   return (
-    <section className="relative py-7.5 sm:py-10 xl:py-17.5 2xxl:py-25 bg-blue-100 overflow-hidden">
-      <div className="container mx-auto max-w-350 px-4">
+    <section
+      className="relative py-7.5 sm:py-10 xl:py-17.5 2xxl:py-25 bg-blue-100 overflow-hidden"
+      aria-labelledby="tech-partners-heading"
+    >
+      <div className="container mx-auto max-w-[1600px] px-6">
         <div className="flex flex-col lg:flex-row items-center">
-          <div className="xl:w-1/4 w-full mb-7.5 xl:mb-0">
+          <div className="xl:w-1/4 w-full mb-7.5 xl:mb-0 shrink-0 pr-8">
             <div className="sm:mb-7.5 mb-5">
-              <h2 className="xl:text-4xl sm:text-3xl text-2xl font-bold capitalize mb-4 text-[#0f1f4b]">
+              <h2
+                id="tech-partners-heading"
+                className="xl:text-4xl sm:text-3xl text-2xl font-bold capitalize mb-4 text-[#0f1f4b]"
+              >
                 Our Technology Partners
               </h2>
               <p className="sm:text-lg text-base leading-[1.6] font-light text-slate-600 mb-0">
@@ -150,45 +174,58 @@ export default function TechPartners() {
 
           <div className="lg:w-3/4 w-full">
             <div
-              className="xl:ml-12.5 mt-7.5 xl:mt-0 py-10 overflow-hidden"
+              className="xl:ml-8 mt-7.5 xl:mt-0 py-10 overflow-hidden"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              <div
-                ref={scrollRef}
-                className="flex gap-5 overflow-x-auto scrollbar-hide items-center"
-                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-              >
-                {partners.map((partner, index) => (
-                  <div
-                    key={index}
-                    className="shrink-0 w-[256.6px] flex flex-col justify-center bg-white sm:rounded-2xl rounded-lg md:py-10 md:px-7.5 py-8.75 px-6.25 gap-3 items-center text-center h-80 transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:z-10"
-                  >
-                    <div className="flex justify-center sm:w-37.5 w-30 relative overflow-hidden">
-                      <Image
-                        src={partner.image}
-                        alt={`${partner.name} logo`}
-                        width={150}
-                        height={100}
-                        className="w-full h-auto object-contain"
-                      />
-                    </div>
-                    <div className="dz-content">
-                      <h3 className="md:text-2xl text-xl mb-1.25 font-bold text-[#0f1f4b]">
-                        {partner.name}
-                      </h3>
-                      <p className="md:text-base text-sm mb-2 font-medium text-slate-600">
-                        {partner.description}
-                      </p>
-                      <a
-                        href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-                        className="md:text-sm text-xs text-[#1d4ed8] hover:underline"
-                      >
-                        Learn More
-                      </a>
-                    </div>
-                  </div>
-                ))}
+              <div className="relative w-full">
+                <div className="absolute right-0 top-0 bottom-0 w-24 bg-linear-to-l from-blue-100 via-blue-100/70 to-transparent z-30 pointer-events-none blur-[2px]" />
+
+                <ul
+                  ref={listRef}
+                  className="flex gap-6 w-max items-center list-none m-0 p-0"
+                  aria-label="Technology partners"
+                >
+                  {marqueePartners.map((partner, index) => (
+                    <li
+                      key={`${partner.name}-${index}`}
+                      aria-hidden={index >= partners.length ? true : undefined}
+                      className={`shrink-0 w-70 flex flex-col justify-center bg-white sm:rounded-2xl rounded-lg md:py-10 md:px-7.5 py-8.75 px-6.25 gap-3 items-center text-center h-80 transition-all duration-700 ease-in-out will-change-transform ${
+                        activeIndex === index % partners.length
+                          ? "scale-110 shadow-2xl z-20"
+                          : "scale-100 shadow-none z-10"
+                      }`}
+                    >
+                      <div className="flex justify-center sm:w-37.5 w-30 relative overflow-hidden">
+                        <Image
+                          src={partner.image}
+                          alt={`${partner.name} logo`}
+                          title={partner.name}
+                          width={150}
+                          height={100}
+                          loading={index < 6 ? "eager" : "lazy"}
+                          sizes="150px"
+                          className="w-full h-auto object-contain"
+                        />
+                      </div>
+                      <div className="dz-content">
+                        <h3 className="md:text-2xl text-xl mb-1.25 font-bold text-[#0f1f4b]">
+                          {partner.name}
+                        </h3>
+                        <p className="md:text-base text-sm mb-2 font-medium text-slate-600">
+                          {partner.description}
+                        </p>
+                        <a
+                          href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
+                          className="md:text-sm text-xs text-[#1d4ed8] hover:underline"
+                          tabIndex={index >= partners.length ? -1 : undefined}
+                        >
+                          Learn More
+                        </a>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>

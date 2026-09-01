@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -14,9 +14,18 @@ import {
 
 export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileActive, setMobileActive] = useState<string | null>(null);
   const menuTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleMouseEnter = (menu: string) => {
     if (menuTimeout.current) clearTimeout(menuTimeout.current);
@@ -34,11 +43,15 @@ export default function Navbar() {
   };
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 w-full max-w-[100vw] overflow-x-clip text-white bg-transparent">
-      <div className="w-full mx-auto flex items-center justify-between px-4 lg:px-8 h-16 border-b border-white/10 relative">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 w-full max-w-[100vw] text-white transition-all duration-300 ${
+        scrolled ? "bg-black/60 backdrop-blur-md shadow-lg" : "bg-transparent"
+      }`}
+    >
+      <div className="w-full mx-auto flex items-center justify-between px-4 lg:px-8 h-16 border-b border-white/10">
         <Link
           href="/"
-          className="flex items-center gap-2.5 pr-6 border-r border-white/10 h-full shrink-0"
+          className="flex items-center gap-2.5 pr-6 h-full shrink-0"
         >
           <Image
             src="/images/logowhitenew-240.webp"
@@ -50,26 +63,26 @@ export default function Navbar() {
           />
         </Link>
 
-        <nav className="hidden lg:flex items-center h-full flex-1 justify-center overflow-hidden">
+        <nav className="hidden lg:flex items-center h-full flex-1 justify-center overflow-visible">
           <Link
             href="/"
-            className="px-4 py-1.5 text-[13px] font-bold tracking-wide hover:text-blue-400 transition shrink-0"
+            className="px-4 py-1.5 text-[13px] font-bold tracking-wide hover:text-blue-400 transition shrink-0 text-white"
           >
             Home
           </Link>
 
           <div
-            className="relative h-full flex items-center border-l border-white/10 px-4 cursor-pointer shrink-0"
+            className="relative h-full flex items-center px-4 cursor-pointer shrink-0"
             onMouseEnter={() => handleMouseEnter("product")}
             onMouseLeave={handleMouseLeave}
           >
-            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group">
+            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group text-white">
               Product{" "}
               <ChevronDown className="w-3.5 h-3.5 mt-0.5 transition-transform duration-300 group-hover:rotate-180" />
             </span>
 
             <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 w-212 max-w-[90vw] bg-white text-slate-900 rounded-b-2xl shadow-2xl p-6 grid grid-cols-12 gap-6 cursor-default transition-all duration-300 ease-in-out ${
+              className={`absolute top-full left-1/2 -translate-x-1/2 w-212.5 max-w-[90vw] bg-white/95 backdrop-blur-xl text-slate-900 rounded-b-2xl shadow-2xl p-6 grid grid-cols-12 gap-6 cursor-default transition-all duration-300 ease-in-out ${
                 activeMenu === "product"
                   ? "opacity-100 translate-y-0 visible"
                   : "opacity-0 translate-y-4 invisible pointer-events-none"
@@ -88,9 +101,12 @@ export default function Navbar() {
                   SPS empowers enterprises with Cybersecurity, Cloud, AI &
                   Automation solutions.
                 </p>
-                <button className="flex items-center gap-2 text-xs font-bold text-blue-600 hover:text-blue-800 transition">
-                  <Grid className="w-4 h-4" /> View All Products
-                </button>
+                <Link
+                  href="/product/product-detail"
+                  className="text-blue-600 hover:text-blue-800 font-bold text-sm transition"
+                >
+                  View All Products
+                </Link>
               </div>
               <div className="col-span-7 grid grid-cols-3 gap-6 text-sm">
                 <div>
@@ -99,17 +115,17 @@ export default function Navbar() {
                   </h4>
                   <ul className="space-y-2 text-slate-600">
                     {[
-                      "MYID Self Verify",
-                      "Azalio",
-                      "Fabrico",
-                      "BMS",
-                      "CSM",
+                      { name: "MYID Self Verify", href: "/" },
+                      { name: "Azalio", href: "/" },
+                      { name: "Fabrico", href: "/" },
+                      { name: "BMS", href: "/" },
+                      { name: "CSM", href: "/" },
                     ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -120,16 +136,16 @@ export default function Navbar() {
                   </h4>
                   <ul className="space-y-2 text-slate-600">
                     {[
-                      "Automation",
-                      "Data & AI",
-                      "Security",
-                      "Sustainability",
+                      { name: "Automation", href: "/product/ibm/automation" },
+                      { name: "Data & AI", href: "/" },
+                      { name: "Security", href: "/" },
+                      { name: "Sustainability", href: "/" },
                     ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -140,16 +156,16 @@ export default function Navbar() {
                   </h4>
                   <ul className="space-y-2 text-slate-600">
                     {[
-                      "Cloud Management",
-                      "Analytics Tools",
-                      "IoT Solutions",
-                      "Blockchain",
+                      { name: "Cloud Management", href: "/" },
+                      { name: "Analytics Tools", href: "/" },
+                      { name: "IoT Solutions", href: "/" },
+                      { name: "Blockchain", href: "/" },
                     ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -158,17 +174,18 @@ export default function Navbar() {
             </div>
           </div>
 
+          {/* Services Menu */}
           <div
-            className="relative h-full flex items-center border-l border-white/10 px-4 cursor-pointer shrink-0"
+            className="relative h-full flex items-center px-4 cursor-pointer shrink-0"
             onMouseEnter={() => handleMouseEnter("services")}
             onMouseLeave={handleMouseLeave}
           >
-            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group">
+            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group text-white">
               Services{" "}
               <ChevronDown className="w-3.5 h-3.5 mt-0.5 transition-transform duration-300 group-hover:rotate-180" />
             </span>
             <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 w-200 max-w-[90vw] bg-white text-slate-900 rounded-b-2xl shadow-2xl p-6 grid grid-cols-12 gap-6 transition-all duration-300 ease-in-out ${
+              className={`absolute top-full left-1/2 -translate-x-1/2 w-200 max-w-[90vw] bg-white/95 backdrop-blur-xl text-slate-900 rounded-b-2xl shadow-2xl p-6 grid grid-cols-12 gap-6 transition-all duration-300 ease-in-out ${
                 activeMenu === "services"
                   ? "opacity-100 translate-y-0 visible"
                   : "opacity-0 translate-y-4 invisible pointer-events-none"
@@ -186,27 +203,30 @@ export default function Navbar() {
                 <p className="text-xs text-slate-600 mb-2">
                   Accelerate digital transformation with AI & Cloud.
                 </p>
-                <span className="text-xs font-bold text-blue-600 flex items-center gap-1 group">
+                <Link
+                  href="/"
+                  className="text-xs font-bold text-blue-600 flex items-center gap-1 group"
+                >
                   Discover More{" "}
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                </span>
+                </Link>
               </div>
               <div className="col-span-7 grid grid-cols-2 gap-6 text-sm">
                 <div className="border-b border-slate-200 pb-4">
                   <h4 className="font-bold mb-3">Cybersecurity</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      "Network Security",
-                      "SMaaS",
-                      "GRC",
-                      "Identity & Access",
-                      "Threat Management",
+                      { name: "Network Security", href: "/" },
+                      { name: "SMaaS", href: "/" },
+                      { name: "GRC", href: "/" },
+                      { name: "Identity & Access", href: "/" },
+                      { name: "Threat Management", href: "/" },
                     ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -214,12 +234,15 @@ export default function Navbar() {
                 <div className="border-b border-slate-200 pb-4">
                   <h4 className="font-bold mb-3">Cloud</h4>
                   <ul className="space-y-1.5 text-slate-600">
-                    {["Devops", "Migration Services"].map((item) => (
+                    {[
+                      { name: "Devops", href: "/" },
+                      { name: "Migration Services", href: "/" },
+                    ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -227,12 +250,15 @@ export default function Navbar() {
                 <div className="border-b border-slate-200 pb-4">
                   <h4 className="font-bold mb-3">AI & Automation</h4>
                   <ul className="space-y-1.5 text-slate-600">
-                    {["Automation", "Data Science"].map((item) => (
+                    {[
+                      { name: "Automation", href: "/" },
+                      { name: "Data Science", href: "/" },
+                    ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -240,12 +266,15 @@ export default function Navbar() {
                 <div className="border-b border-slate-200 pb-4">
                   <h4 className="font-bold mb-3">Collaboration</h4>
                   <ul className="space-y-1.5 text-slate-600">
-                    {["Training", "Events"].map((item) => (
+                    {[
+                      { name: "Training", href: "/" },
+                      { name: "Events", href: "/" },
+                    ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -253,34 +282,39 @@ export default function Navbar() {
                 <div className="col-span-2">
                   <h4 className="font-bold mb-3">Training</h4>
                   <ul className="space-y-1.5 text-slate-600">
-                    {["SPS Oil & Gas", "IBM", "Google", "AWS", "See More"].map(
-                      (item) => (
-                        <li
-                          key={item}
-                          className="hover:text-blue-600 cursor-pointer"
-                        >
-                          {item}
-                        </li>
-                      ),
-                    )}
+                    {[
+                      { name: "SPS Oil & Gas", href: "/" },
+                      { name: "IBM", href: "/" },
+                      { name: "Google", href: "/" },
+                      { name: "AWS", href: "/" },
+                      { name: "See More", href: "/" },
+                    ].map((item) => (
+                      <li
+                        key={item.name}
+                        className="hover:text-blue-600 cursor-pointer"
+                      >
+                        <Link href={item.href}>{item.name}</Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Verticals Menu */}
           <div
-            className="relative h-full flex items-center border-l border-white/10 px-4 cursor-pointer shrink-0"
+            className="relative h-full flex items-center px-4 cursor-pointer shrink-0"
             onMouseEnter={() => handleMouseEnter("verticals")}
             onMouseLeave={handleMouseLeave}
           >
-            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group">
+            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group text-white">
               Verticals{" "}
               <ChevronDown className="w-3.5 h-3.5 mt-0.5 transition-transform duration-300 group-hover:rotate-180" />
             </span>
 
             <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 w-250 max-w-[90vw] bg-white text-slate-900 rounded-b-2xl shadow-2xl p-6 grid grid-cols-12 gap-6 transition-all duration-300 ease-in-out ${
+              className={`absolute top-full left-1/2 -translate-x-1/2 w-250 max-w-[90vw] bg-white/95 backdrop-blur-xl text-slate-900 rounded-b-2xl shadow-2xl p-6 grid grid-cols-12 gap-6 transition-all duration-300 ease-in-out ${
                 activeMenu === "verticals"
                   ? "opacity-100 translate-y-0 visible"
                   : "opacity-0 translate-y-4 invisible pointer-events-none"
@@ -299,26 +333,26 @@ export default function Navbar() {
                   Accelerate your county's digital transformation with an
                   executive-led strategy.
                 </p>
-                <span className="text-xs font-bold text-blue-600">
+                <Link href="/" className="text-xs font-bold text-blue-600">
                   Discover More →
-                </span>
+                </Link>
               </div>
               <div className="col-span-8 grid grid-cols-3 gap-6 text-sm">
                 <div className="border-b border-slate-200 pb-4">
                   <h4 className="font-bold mb-3">Public Sector</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      "County Government",
-                      "Healthcare",
-                      "Government",
-                      "Public Safety",
-                      "Education",
+                      { name: "County Government", href: "/" },
+                      { name: "Healthcare", href: "/" },
+                      { name: "Government", href: "/" },
+                      { name: "Public Safety", href: "/" },
+                      { name: "Education", href: "/" },
                     ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -326,12 +360,16 @@ export default function Navbar() {
                 <div className="border-b border-slate-200 pb-4">
                   <h4 className="font-bold mb-3">Industrial</h4>
                   <ul className="space-y-1.5 text-slate-600">
-                    {["Manufacturing", "Textiles", "Utilities"].map((item) => (
+                    {[
+                      { name: "Manufacturing", href: "/" },
+                      { name: "Textiles", href: "/" },
+                      { name: "Utilities", href: "/" },
+                    ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -340,16 +378,16 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Healthcare</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      "Compliance-requirements",
-                      "Health Systems",
-                      "Interoperability",
-                      "Multi-Clinic",
+                      { name: "Compliance-requirements", href: "/" },
+                      { name: "Health Systems", href: "/" },
+                      { name: "Interoperability", href: "/" },
+                      { name: "Multi-Clinic", href: "/" },
                     ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -358,16 +396,16 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Retail</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      "Convenience Store",
-                      "Marketing",
-                      "Omni-channel",
-                      "Personalization",
+                      { name: "Convenience Store", href: "/" },
+                      { name: "Marketing", href: "/" },
+                      { name: "Omni-channel", href: "/" },
+                      { name: "Personalization", href: "/" },
                     ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -375,12 +413,15 @@ export default function Navbar() {
                 <div className="border-b border-slate-200 pb-4">
                   <h4 className="font-bold mb-3">Energy</h4>
                   <ul className="space-y-1.5 text-slate-600">
-                    {["Electric", "Oil & Gas"].map((item) => (
+                    {[
+                      { name: "Electric", href: "/" },
+                      { name: "Oil & Gas", href: "/" },
+                    ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -388,12 +429,15 @@ export default function Navbar() {
                 <div className="border-b border-slate-200 pb-4">
                   <h4 className="font-bold mb-3">Financial</h4>
                   <ul className="space-y-1.5 text-slate-600">
-                    {["Banking", "Insurance"].map((item) => (
+                    {[
+                      { name: "Banking", href: "/" },
+                      { name: "Insurance", href: "/" },
+                    ].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -401,12 +445,12 @@ export default function Navbar() {
                 <div className="col-span-3">
                   <h4 className="font-bold mb-3">Telecommunications</h4>
                   <ul className="space-y-1.5 text-slate-600">
-                    {["Telcos"].map((item) => (
+                    {[{ name: "Telcos", href: "/" }].map((item) => (
                       <li
-                        key={item}
+                        key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
                       >
-                        {item}
+                        <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -415,112 +459,119 @@ export default function Navbar() {
             </div>
           </div>
 
+          {/* Spinnlabs Menu */}
           <div
-            className="relative h-full flex items-center border-l border-white/10 px-4 cursor-pointer shrink-0"
+            className="relative h-full flex items-center px-4 cursor-pointer shrink-0"
             onMouseEnter={() => handleMouseEnter("spinnlabs")}
             onMouseLeave={handleMouseLeave}
           >
-            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group">
+            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group text-white">
               Spinnlabs{" "}
               <ChevronDown className="w-3.5 h-3.5 mt-0.5 transition-transform duration-300 group-hover:rotate-180" />
             </span>
             <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 w-56 max-w-[90vw] bg-white text-slate-900 rounded-b-xl shadow-xl p-4 text-sm space-y-1.5 transition-all duration-300 ease-in-out ${
+              className={`absolute top-full left-1/2 -translate-x-1/2 w-56 max-w-[90vw] bg-white/95 backdrop-blur-xl text-slate-900 rounded-b-xl shadow-xl p-4 text-sm space-y-1.5 transition-all duration-300 ease-in-out ${
                 activeMenu === "spinnlabs"
                   ? "opacity-100 translate-y-0 visible"
                   : "opacity-0 translate-y-4 invisible pointer-events-none"
               }`}
             >
               {[
-                "Overview",
-                "Academia",
-                "Industry",
-                "Center of Expertise",
-                "Startups",
+                { name: "Overview", href: "/" },
+                { name: "Academia", href: "/" },
+                { name: "Industry", href: "/" },
+                { name: "Center of Expertise", href: "/" },
+                { name: "Startups", href: "/" },
               ].map((item) => (
                 <div
-                  key={item}
+                  key={item.name}
                   className="p-2 hover:bg-slate-100 rounded cursor-pointer hover:text-blue-600"
                 >
-                  {item}
+                  <Link href={item.href}>{item.name}</Link>
                 </div>
               ))}
             </div>
           </div>
 
+          {/* Activities Menu */}
           <div
-            className="relative h-full flex items-center border-l border-white/10 px-4 cursor-pointer shrink-0"
+            className="relative h-full flex items-center px-4 cursor-pointer shrink-0"
             onMouseEnter={() => handleMouseEnter("activities")}
             onMouseLeave={handleMouseLeave}
           >
-            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group">
+            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group text-white">
               Activities{" "}
               <ChevronDown className="w-3.5 h-3.5 mt-0.5 transition-transform duration-300 group-hover:rotate-180" />
             </span>
             <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 w-56 max-w-[90vw] bg-white text-slate-900 rounded-b-xl shadow-xl p-4 text-sm space-y-1.5 transition-all duration-300 ease-in-out ${
+              className={`absolute top-full left-1/2 -translate-x-1/2 w-56 max-w-[90vw] bg-white/95 backdrop-blur-xl text-slate-900 rounded-b-xl shadow-xl p-4 text-sm space-y-1.5 transition-all duration-300 ease-in-out ${
                 activeMenu === "activities"
                   ? "opacity-100 translate-y-0 visible"
                   : "opacity-0 translate-y-4 invisible pointer-events-none"
               }`}
             >
               {[
-                "Roundtables",
-                "Internship Program 2025",
-                "Webinars",
-                "Workshops",
-                "Special Interest Groups",
-                "Training",
+                { name: "Roundtables", href: "/" },
+                { name: "Internship Program 2025", href: "/" },
+                { name: "Webinars", href: "/" },
+                { name: "Workshops", href: "/" },
+                { name: "Special Interest Groups", href: "/" },
+                { name: "Training", href: "/" },
               ].map((item) => (
                 <div
-                  key={item}
+                  key={item.name}
                   className="p-2 hover:bg-slate-100 rounded cursor-pointer hover:text-blue-600"
                 >
-                  {item}
+                  <Link href={item.href}>{item.name}</Link>
                 </div>
               ))}
             </div>
           </div>
 
+          {/* Aboutus Menu */}
           <div
-            className="relative h-full flex items-center border-l border-white/10 px-4 cursor-pointer shrink-0"
+            className="relative h-full flex items-center px-4 cursor-pointer shrink-0"
             onMouseEnter={() => handleMouseEnter("about")}
             onMouseLeave={handleMouseLeave}
           >
-            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group">
+            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group text-white">
               Aboutus{" "}
               <ChevronDown className="w-3.5 h-3.5 mt-0.5 transition-transform duration-300 group-hover:rotate-180" />
             </span>
             <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 w-48 max-w-[90vw] bg-white text-slate-900 rounded-b-xl shadow-xl p-3 text-sm space-y-1.5 transition-all duration-300 ease-in-out ${
+              className={`absolute top-full left-1/2 -translate-x-1/2 w-48 max-w-[90vw] bg-white/95 backdrop-blur-xl text-slate-900 rounded-b-xl shadow-xl p-3 text-sm space-y-1.5 transition-all duration-300 ease-in-out ${
                 activeMenu === "about"
                   ? "opacity-100 translate-y-0 visible"
                   : "opacity-0 translate-y-4 invisible pointer-events-none"
               }`}
             >
-              {["Our Story", "Career"].map((item) => (
+              {[
+                { name: "Our Story", href: "/" },
+                { name: "Career", href: "/" },
+              ].map((item) => (
                 <div
-                  key={item}
+                  key={item.name}
                   className="p-2 hover:bg-slate-100 rounded cursor-pointer hover:text-blue-600"
                 >
-                  {item}
+                  <Link href={item.href}>{item.name}</Link>
                 </div>
               ))}
             </div>
           </div>
 
+          {/* Contracts Submenu */}
           <div
-            className="relative h-full flex items-center border-l border-white/10 px-4 cursor-pointer group shrink-0"
+            className="relative h-full flex items-center px-4 cursor-pointer group shrink-0"
             onMouseEnter={() => handleMouseEnter("contracts")}
             onMouseLeave={handleMouseLeave}
           >
-            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group-hover:text-blue-400">
+            <span className="text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap group-hover:text-blue-400 text-white">
               Contracts{" "}
               <ChevronDown className="w-3.5 h-3.5 mt-0.5 transition-transform duration-300 group-hover:rotate-180" />
             </span>
 
             <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 w-56 max-w-[90vw] bg-white text-slate-900 rounded-b-xl shadow-xl p-2 text-sm transition-all duration-300 ease-in-out ${
+              className={`absolute top-full left-1/2 -translate-x-1/2 w-56 max-w-[90vw] bg-white/95 backdrop-blur-xl text-slate-900 rounded-b-xl shadow-xl p-2 text-sm transition-all duration-300 ease-in-out ${
                 activeMenu === "contracts"
                   ? "opacity-100 translate-y-0 visible"
                   : "opacity-0 translate-y-4 invisible pointer-events-none"
@@ -528,7 +579,8 @@ export default function Navbar() {
             >
               <div className="relative group/vita w-full">
                 <div className="p-2 hover:bg-slate-100 rounded cursor-pointer flex justify-between items-center hover:text-blue-600">
-                  VITA <ChevronRight className="w-4 h-4" />
+                  <Link href="/">VITA</Link>{" "}
+                  <ChevronRight className="w-4 h-4" />
                 </div>
 
                 <div
@@ -540,7 +592,8 @@ export default function Navbar() {
                 >
                   <div className="relative group/pricing w-full">
                     <div className="p-2 hover:bg-slate-100 rounded cursor-pointer flex justify-between items-center hover:text-blue-600">
-                      Pricing <ChevronRight className="w-4 h-4" />
+                      <Link href="/">Pricing</Link>{" "}
+                      <ChevronRight className="w-4 h-4" />
                     </div>
 
                     <div
@@ -551,13 +604,13 @@ export default function Navbar() {
                       }`}
                     >
                       <div className="p-2 hover:bg-slate-100 rounded cursor-pointer hover:text-blue-600">
-                        Basic
+                        <Link href="/">Basic</Link>
                       </div>
                       <div className="p-2 hover:bg-slate-100 rounded cursor-pointer hover:text-blue-600">
-                        Enterprise
+                        <Link href="/">Enterprise</Link>
                       </div>
                       <div className="p-2 hover:bg-slate-100 rounded cursor-pointer hover:text-blue-600">
-                        Custom
+                        <Link href="/">Custom</Link>
                       </div>
                     </div>
                   </div>
@@ -568,7 +621,7 @@ export default function Navbar() {
 
           <Link
             href="#contact"
-            className="px-4 py-1.5 text-[13px] font-bold border-l border-white/10 hover:text-blue-400 transition shrink-0"
+            className="px-4 py-1.5 text-[13px] font-bold hover:text-blue-400 transition shrink-0 text-white"
           >
             Contact Us
           </Link>
@@ -596,12 +649,12 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="lg:hidden fixed top-16 left-0 right-0 bottom-0 bg-slate-950/95 backdrop-blur-xl overflow-y-auto transition-all duration-300">
+        <div className="lg:hidden fixed top-16 left-0 right-0 bottom-0 bg-black/95 backdrop-blur-xl overflow-y-auto transition-all duration-300">
           <div className="px-4 py-4 space-y-2">
             <Link
               href="/"
               onClick={() => setMobileOpen(false)}
-              className="block py-3 border-b border-white/10 font-bold text-base"
+              className="block py-3 border-b border-white/10 font-bold text-base text-white"
             >
               Home
             </Link>
@@ -609,7 +662,7 @@ export default function Navbar() {
             <div className="border-b border-white/10">
               <button
                 onClick={() => toggleMobile("mproduct")}
-                className="w-full py-3 flex justify-between items-center font-bold text-base"
+                className="w-full py-3 flex justify-between items-center font-bold text-base text-white"
               >
                 Product{" "}
                 <ChevronDown
@@ -631,29 +684,41 @@ export default function Navbar() {
                       Automation.
                     </p>
                   </div>
-                  <p className="font-bold text-sm">SPS</p>
+                  <p className="font-bold text-sm text-white">SPS</p>
                   {["MYID", "Azalio", "Fabrico", "BMS", "CSM"].map((item) => (
-                    <p key={item} className="text-sm text-white/80 pl-2">
+                    <Link
+                      key={item}
+                      href="/"
+                      className="text-sm text-white/80 pl-2 block"
+                    >
                       {item}
-                    </p>
+                    </Link>
                   ))}
-                  <p className="font-bold text-sm pt-2">IBM</p>
+                  <p className="font-bold text-sm pt-2 text-white">IBM</p>
                   {[
-                    "Automation",
-                    "Data & AI",
-                    "Security",
-                    "Sustainability",
+                    { name: "Automation", href: "/product/ibm/automation" },
+                    { name: "Data & AI", href: "/" },
+                    { name: "Security", href: "/" },
+                    { name: "Sustainability", href: "/" },
                   ].map((item) => (
-                    <p key={item} className="text-sm text-white/80 pl-2">
-                      {item}
-                    </p>
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm text-white/80 pl-2 block"
+                    >
+                      {item.name}
+                    </Link>
                   ))}
-                  <p className="font-bold text-sm pt-2">Others</p>
+                  <p className="font-bold text-sm pt-2 text-white">Others</p>
                   {["Cloud Mgmt", "Analytics", "IoT", "Blockchain"].map(
                     (item) => (
-                      <p key={item} className="text-sm text-white/80 pl-2">
+                      <Link
+                        key={item}
+                        href="/"
+                        className="text-sm text-white/80 pl-2 block"
+                      >
                         {item}
-                      </p>
+                      </Link>
                     ),
                   )}
                 </div>
@@ -663,7 +728,7 @@ export default function Navbar() {
             <div className="border-b border-white/10">
               <button
                 onClick={() => toggleMobile("mservices")}
-                className="w-full py-3 flex justify-between items-center font-bold text-base"
+                className="w-full py-3 flex justify-between items-center font-bold text-base text-white"
               >
                 Services{" "}
                 <ChevronDown
@@ -681,25 +746,37 @@ export default function Navbar() {
                       className="rounded-lg object-cover"
                     />
                   </div>
-                  <p className="font-bold text-sm">Cybersecurity</p>
+                  <p className="font-bold text-sm text-white">Cybersecurity</p>
                   {["Network", "SMaaS", "GRC", "Identity", "Threat"].map(
                     (item) => (
-                      <p key={item} className="text-sm text-white/80 pl-2">
+                      <Link
+                        key={item}
+                        href="/"
+                        className="text-sm text-white/80 pl-2 block"
+                      >
                         {item}
-                      </p>
+                      </Link>
                     ),
                   )}
-                  <p className="font-bold text-sm pt-2">Cloud</p>
+                  <p className="font-bold text-sm pt-2 text-white">Cloud</p>
                   {["Devops", "Migration"].map((item) => (
-                    <p key={item} className="text-sm text-white/80 pl-2">
+                    <Link
+                      key={item}
+                      href="/"
+                      className="text-sm text-white/80 pl-2 block"
+                    >
                       {item}
-                    </p>
+                    </Link>
                   ))}
-                  <p className="font-bold text-sm pt-2">AI</p>
+                  <p className="font-bold text-sm pt-2 text-white">AI</p>
                   {["Automation", "Data Science"].map((item) => (
-                    <p key={item} className="text-sm text-white/80 pl-2">
+                    <Link
+                      key={item}
+                      href="/"
+                      className="text-sm text-white/80 pl-2 block"
+                    >
                       {item}
-                    </p>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -708,7 +785,7 @@ export default function Navbar() {
             <div className="border-b border-white/10">
               <button
                 onClick={() => toggleMobile("mverticals")}
-                className="w-full py-3 flex justify-between items-center font-bold text-base"
+                className="w-full py-3 flex justify-between items-center font-bold text-base text-white"
               >
                 Verticals{" "}
                 <ChevronDown
@@ -717,17 +794,27 @@ export default function Navbar() {
               </button>
               {mobileActive === "mverticals" && (
                 <div className="pl-4 pb-4 space-y-2">
-                  <p className="font-bold text-sm">Public</p>
+                  <p className="font-bold text-sm text-white">Public</p>
                   {["County", "Healthcare", "Gov", "Safety"].map((item) => (
-                    <p key={item} className="text-sm text-white/80 pl-2">
+                    <Link
+                      key={item}
+                      href="/"
+                      className="text-sm text-white/80 pl-2 block"
+                    >
                       {item}
-                    </p>
+                    </Link>
                   ))}
-                  <p className="font-bold text-sm pt-2">Industrial</p>
+                  <p className="font-bold text-sm pt-2 text-white">
+                    Industrial
+                  </p>
                   {["Mfg", "Textiles", "Utilities"].map((item) => (
-                    <p key={item} className="text-sm text-white/80 pl-2">
+                    <Link
+                      key={item}
+                      href="/"
+                      className="text-sm text-white/80 pl-2 block"
+                    >
                       {item}
-                    </p>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -736,7 +823,7 @@ export default function Navbar() {
             <div className="border-b border-white/10">
               <button
                 onClick={() => toggleMobile("mspinnlabs")}
-                className="w-full py-3 flex justify-between items-center font-bold text-base"
+                className="w-full py-3 flex justify-between items-center font-bold text-base text-white"
               >
                 Spinnlabs{" "}
                 <ChevronDown
@@ -747,9 +834,13 @@ export default function Navbar() {
                 <div className="pl-4 pb-4 space-y-2">
                   {["Overview", "Academia", "Industry", "CoE", "Startups"].map(
                     (item) => (
-                      <p key={item} className="text-sm text-white/80">
+                      <Link
+                        key={item}
+                        href="/"
+                        className="text-sm text-white/80 block"
+                      >
                         {item}
-                      </p>
+                      </Link>
                     ),
                   )}
                 </div>
@@ -759,7 +850,7 @@ export default function Navbar() {
             <div className="border-b border-white/10">
               <button
                 onClick={() => toggleMobile("mactivities")}
-                className="w-full py-3 flex justify-between items-center font-bold text-base"
+                className="w-full py-3 flex justify-between items-center font-bold text-base text-white"
               >
                 Activities{" "}
                 <ChevronDown
@@ -776,9 +867,13 @@ export default function Navbar() {
                     "SIG",
                     "Training",
                   ].map((item) => (
-                    <p key={item} className="text-sm text-white/80">
+                    <Link
+                      key={item}
+                      href="/"
+                      className="text-sm text-white/80 block"
+                    >
                       {item}
-                    </p>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -787,7 +882,7 @@ export default function Navbar() {
             <div className="border-b border-white/10">
               <button
                 onClick={() => toggleMobile("mabout")}
-                className="w-full py-3 flex justify-between items-center font-bold text-base"
+                className="w-full py-3 flex justify-between items-center font-bold text-base text-white"
               >
                 Aboutus{" "}
                 <ChevronDown
@@ -797,9 +892,13 @@ export default function Navbar() {
               {mobileActive === "mabout" && (
                 <div className="pl-4 pb-4 space-y-2">
                   {["Our Story", "Career"].map((item) => (
-                    <p key={item} className="text-sm text-white/80">
+                    <Link
+                      key={item}
+                      href="/"
+                      className="text-sm text-white/80 block"
+                    >
                       {item}
-                    </p>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -808,7 +907,7 @@ export default function Navbar() {
             <div className="border-b border-white/10">
               <button
                 onClick={() => toggleMobile("mcontracts")}
-                className="w-full py-3 flex justify-between items-center font-bold text-base"
+                className="w-full py-3 flex justify-between items-center font-bold text-base text-white"
               >
                 Contracts{" "}
                 <ChevronDown
@@ -817,8 +916,12 @@ export default function Navbar() {
               </button>
               {mobileActive === "mcontracts" && (
                 <div className="pl-4 pb-4 space-y-2">
-                  <p className="text-sm text-white/80">VITA</p>
-                  <p className="text-sm text-white/80 pl-2">Pricing</p>
+                  <Link href="/" className="text-sm text-white/80 block">
+                    VITA
+                  </Link>
+                  <Link href="/" className="text-sm text-white/80 pl-2 block">
+                    Pricing
+                  </Link>
                 </div>
               )}
             </div>
@@ -826,7 +929,7 @@ export default function Navbar() {
             <Link
               href="#contact"
               onClick={() => setMobileOpen(false)}
-              className="block py-3 border-b border-white/10 font-bold text-base"
+              className="block py-3 border-b border-white/10 font-bold text-base text-white"
             >
               Contact Us
             </Link>
@@ -834,7 +937,7 @@ export default function Navbar() {
             <Link
               href="#internship"
               onClick={() => setMobileOpen(false)}
-              className="mt-4 block text-center border border-white/40 rounded-full px-6 py-3 font-bold hover:bg-white hover:text-slate-950 transition-all"
+              className="mt-4 block text-center border border-white/40 rounded-full px-6 py-3 font-bold hover:bg-white hover:text-slate-950 transition-all text-white"
             >
               Internship
             </Link>

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 
 interface ClientLogo {
@@ -82,9 +84,9 @@ const CLIENTS_DATA: ClientLogo[] = [
     logoUrl: "/images/logos/heart-health.jpg",
   },
   {
-    id: "doit",
-    name: "DoIT Maryland",
-    logoUrl: "/images/logos/doit.webp",
+    id: "gatekeeper",
+    name: "Gatekeeper",
+    logoUrl: "/images/logos/gatekeeper.webp",
   },
   { id: "hamdard", name: "Hamdard", logoUrl: "/images/logos/hamdard.webp" },
   {
@@ -111,7 +113,7 @@ const CLIENTS_DATA: ClientLogo[] = [
   {
     id: "montgomery-schools",
     name: "Montgomery County Public Schools",
-    logoUrl: "/images/logos/montgomery-schools.webp",
+    logoUrl: "/images/logos/montgomery-schools.jpg",
   },
   {
     id: "dgs",
@@ -197,42 +199,66 @@ const CLIENTS_DATA: ClientLogo[] = [
   { id: "ufone", name: "Ufone", logoUrl: "/images/logos/ufone.webp" },
 ];
 
-const LOOP_DATA = [...CLIENTS_DATA, ...CLIENTS_DATA, ...CLIENTS_DATA];
+const LOOP_DATA = [...CLIENTS_DATA, ...CLIENTS_DATA];
 
 export default function CustomersPage() {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      container.scrollLeft += e.deltaY;
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      container.removeEventListener("wheel", handleWheel);
+    };
+  }, []);
+
   return (
-    <div className="bg-blue-100 flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-360 w-full text-center">
-        <h1 className="text-3xl font-bold text-[#111827] tracking-tight sm:text-4xl">
-          Customers we are proud to work with.
-        </h1>
-        <p className="mt-3 max-w-3xl mx-auto text-base text-[#4b5563] leading-relaxed">
-          Our mission is to deliver compelling narratives, remarkable
-          experiences, and outstanding results for our clients.
-        </p>
+    <div className="bg-blue-100 flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="max-w-[1600px] w-full">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 mb-10">
+          <div className="lg:w-1/4 w-full text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl font-bold text-[#0f1f4b] tracking-tight leading-tight">
+              Customers We <br /> Are Proud To <br /> Work With.
+            </h1>
+          </div>
 
-        <div className="relative py-16 overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-linear-to-r from-blue-100 via-blue-100/80 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-linear-to-l from-blue-100 via-blue-100/80 to-transparent z-10 pointer-events-none" />
+          <div className="lg:w-3/4 w-full relative">
+            <div className="absolute left-0 top-0 bottom-0 w-24 bg-linear-to-r from-blue-100 via-blue-100/80 to-transparent z-20 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 bg-linear-to-l from-blue-100 via-blue-100/80 to-transparent z-20 pointer-events-none" />
 
-          <div className="flex gap-6 animate-marquee py-10">
-            {LOOP_DATA.map((client, index) => (
-              <div
-                key={`${client.id}-${index}`}
-                className="relative shrink-0 w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-60 lg:h-60 bg-white rounded-full border-4 border-blue-900 shadow-lg flex items-center justify-center p-6 transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:z-20 overflow-hidden"
-              >
-                <div className="relative w-full h-full">
-                  <Image
-                    src={client.logoUrl}
-                    alt={`${client.name} logo`}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 25vw, (max-width: 1024px) 16vw, 9vw"
-                    className="object-contain"
-                    loading="lazy"
-                  />
-                </div>
+            <div
+              ref={scrollRef}
+              className="flex gap-6 overflow-x-auto scrollbar-hide py-10 px-4 cursor-grab active:cursor-grabbing"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
+              <div className="flex gap-6 animate-marquee shrink-0">
+                {LOOP_DATA.map((client, index) => (
+                  <div
+                    key={`${client.id}-${index}`}
+                    className="relative shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 bg-white rounded-full border-4 border-[#0f1f4b] shadow-lg flex items-center justify-center p-4 transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:z-30 overflow-hidden cursor-pointer"
+                  >
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={client.logoUrl}
+                        alt={`${client.name} logo`}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 25vw, (max-width: 1024px) 16vw, 9vw"
+                        className="object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
@@ -243,18 +269,26 @@ export default function CustomersPage() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-33.33%);
+            transform: translateX(-50%);
           }
         }
 
         .animate-marquee {
           display: flex;
           animation: marquee 60s linear infinite;
-          width: max-content;
         }
 
         .animate-marquee:hover {
           animation-play-state: paused;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>
