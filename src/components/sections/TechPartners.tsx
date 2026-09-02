@@ -217,8 +217,9 @@ export default function TechPartners() {
                         </p>
                         <a
                           href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-                          className="md:text-sm text-xs text-[#1d4ed8] hover:underline"
+                          className="md:text-sm text-xs text-[#1d4ed8] hover:underline focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#1d4ed8] rounded"
                           tabIndex={index >= partners.length ? -1 : undefined}
+                          aria-label={`Learn more about ${partner.name}`}
                         >
                           Learn More
                         </a>

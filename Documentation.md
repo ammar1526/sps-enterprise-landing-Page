@@ -20,7 +20,9 @@ The core components are located in the `src/components` (or `app/components`) di
   - Triple-level nested dropdown (Contracts > VITA > Pricing).
   - Mobile responsive hamburger menu with slide-down accordions.
   - All Mega Menus use `max-w-[90vw]` and `left-1/2 -translate-x-1/2` to prevent overflowing the screen.
-  - Social/CTA buttons on the right (Internship pill, Info button).
+  - Internship pill and CTA buttons on the right.
+  - Responsible for routing to `/product/ibm/automation` and various internal routes.
+  - Updated to be fully optimized for tablet and desktop responsiveness, preventing sidebar overflow on zoom.
 
 #### 2. `HeroSection.tsx`
 
@@ -32,8 +34,8 @@ The core components are located in the `src/components` (or `app/components`) di
   - Foreground text positioned between the center and left arrow (`ml-6 sm:ml-10 lg:ml-32 xl:ml-40`).
   - Navigation arrows (ChevronLeft/Right) and slide indicator dots.
   - "Request a Quote" Modal triggered by "How can we help you today".
-  - Primary button color adjusted to `#1d4ed8` (dark blue) with hover to `#1e40af`.
-  - Height set to `h-screen min-h-[800px]` to cover the entire viewport on load.
+  - Primary button color adjusted to `#4d75e6` and hover to `#1e40af`.
+  - Text sizing increased (Headings `text-7xl`, Subtext `text-2xl`) to fill the large space gracefully.
 
 #### 3. `ServicesSection.tsx`
 
@@ -66,7 +68,18 @@ The core components are located in the `src/components` (or `app/components`) di
   - Grid of 4 product cards (`Azalio`, `MYID`, `CSM`, `BMS`) with glassmorphism effects (`bg-white/5 backdrop-blur-[30px]`).
   - Logos placed openly without circular borders.
 
-#### 6. `RequestForm.tsx`
+#### 6. `DetailOurProduct.tsx`
+
+- **Functionality:** Interactive product tabs (SPS, IBM, Other Solutions) with left-side buttons and right-side content card.
+- **Features:**
+  - Uses `useCallback` and `useMemo` for optimized performance.
+  - Left-side buttons have a pill shape and adjust border-radius/padding to match UI.
+  - Large gap (`gap-12 lg:gap-20`) between left and right content.
+  - "Book An Appointment" button overlays the image (`/images/banners/p2.webp`).
+  - Lazy loading applied to images for performance.
+  - Team info and arrow button placed at the bottom of the content card.
+
+#### 7. `RequestForm.tsx`
 
 - **Functionality:** Appointment/Contact form.
 - **Features:**
@@ -78,7 +91,7 @@ The core components are located in the `src/components` (or `app/components`) di
   - Buttons have hover color transitions (e.g., Appointment button changes to `#0f1f4b`).
   - Added `mb-12.5 pb-10` for bottom spacing.
 
-#### 7. `HowItWorks.tsx`
+#### 8. `HowItWorks.tsx`
 
 - **Functionality:** Step-by-step process section.
 - **Features:**
@@ -88,27 +101,27 @@ The core components are located in the `src/components` (or `app/components`) di
   - Hoverable "Book Appointment" button with color transitions.
   - "180+ Specialists" and "45K Happy Clients" animated counters.
 
-#### 8. `TechPartners.tsx`
+#### 9. `TechPartners.tsx`
 
-- **Functionality:** Infinite scrolling logos marquee.
+- **Functionality:** Step-by-step infinite looping carousel with auto-zoom effect.
 - **Features:**
   - Background color `bg-blue-100`.
-  - Infinite auto-scroll using `requestAnimationFrame` (Speed = 2).
-  - Pauses on container hover (`isPaused`).
-  - Cards pop out on hover with `hover:scale-110` and additional container padding (`py-10`) to prevent clipping.
-  - Cards have fixed width `w-[256.6px]`.
+  - Precisely moves one card at a time every 3 seconds using an optimized `useCallback` and `setInterval`.
+  - The card currently in the "first" position auto-zooms (`scale-110`) for 2.5 seconds before moving to the next.
+  - Right side is fully open, left side has a soft blurred gradient mask.
+  - Responsive and optimized (`useCallback` and `useRef`).
 
-#### 9. `CustomersPage.tsx` (Clients Logos)
+#### 10. `CustomersPage.tsx` (Clients Logos)
 
-- **Functionality:** Animated clients carousel.
+- **Functionality:** Animated clients marquee with manual scrolling capabilities.
 - **Features:**
   - Background color `bg-blue-100`.
   - Infinite horizontal loop using CSS `@keyframes marquee`.
-  - Logos placed inside large circles (`w-60 h-60`) with borders.
-  - Given extra vertical padding (`py-16`, `py-10`) to allow `hover:scale-110` without touching walls.
+  - Logos placed inside smaller circular borders (`lg:w-40 lg:h-40`).
+  - Added `useRef` and wheel event listener to allow manual scrolling via mouse wheel.
   - Left and right gradient fade masks.
 
-#### 10. `NewsSection.tsx`
+#### 11. `NewsSection.tsx`
 
 - **Functionality:** News and Insights grid.
 - **Features:**
@@ -117,7 +130,7 @@ The core components are located in the `src/components` (or `app/components`) di
   - "View All" and "Read More" buttons with hover colors (`#0f1f4b` to `#1d4ed8`).
   - Fixed alignment on hover and arrow buttons properly circled (`rounded-full`).
 
-#### 11. `ComprehensiveGrid.tsx` (Verticals)
+#### 12. `ComprehensiveGrid.tsx` (Verticals)
 
 - **Functionality:** Industry solutions grid.
 - **Features:**
@@ -128,18 +141,85 @@ The core components are located in the `src/components` (or `app/components`) di
   - "Read More" is functional (toggles `Read Less` and `line-clamp`).
   - Used Unsplash images based on card context.
 
+#### 13. `FeaturedSolutions.tsx` (Product Filter)
+
+- **Functionality:** Filterable technology solution grid.
+- **Features:**
+  - 4 Tabs for filtering: "All Solutions", "SPS Products", "IBM Products", "Other Solutions".
+  - Optimized with `useMemo` for filtering logic and `useCallback` for tab switching.
+  - "SPS Products" and "IBM Products" tabs show two specific cards each; "Other Solutions" shows three specific cards.
+  - `priority` prop added to first image for faster LCP.
+  - Buttons have `cursor-pointer`.
+
+#### 14. `ProductsTabs.tsx`
+
+- **Functionality:** Interactive tabs with left buttons and right content card.
+- **Features:**
+  - Uses `useCallback` and `useMemo` for optimized performance.
+  - Left-side buttons have a pill shape and adjust border-radius/padding to match UI.
+  - Large gap (`gap-12 lg:gap-20`) between left and right content.
+  - "Book An Appointment" button overlays the image (`/images/banners/p2.webp`).
+  - Lazy loading applied to images for performance.
+  - Team info and arrow button placed at the bottom of the content card.
+
+#### 15. `AutomationDetail.tsx`
+
+- **Functionality:** "IBM Watsonx Orchestrate" detailed section.
+- **Features:**
+  - Local images (`/images/ibm/ibm.webp` and `/images/ibm/watsonx.webp`) used for the left column.
+  - Play Video button opens a modal (`isVideoOpen` state) with an embedded YouTube iframe (no redirects).
+  - 8 feature highlights listed in a 2-column grid with arrow icons.
+  - Read more button links to `comingsoon.php` with hover effects.
+
+#### 16. `AutomationSolution.tsx`
+
+- **Functionality:** "AI-Powered Business Capabilities" cards section.
+- **Features:**
+  - Background changed to `bg-blue-100`.
+  - Card heights reduced to `h-72`.
+  - Dark background (`#0f1f4b`) cards with low-opacity background images (0.3).
+  - Icon boxes wrapped in `bg-white/10 backdrop-blur-md` containers.
+
+#### 17. `AutomationIbm.tsx`
+
+- **Functionality:** "Why Choose IBM Automation" section.
+- **Features:**
+  - Background image taken from `spsnet.com` assets.
+  - Two feature cards with rounded corners and `Check` icons in `bg-[#1d4ed8]` circles.
+  - Height of right-side image reduced for better UI balance.
+
+#### 18. `AutomationWorkflow.tsx`
+
+- **Functionality:** Tabbed "Build, Run And Manage AI Agents" section.
+- **Features:**
+  - Uses `useState` to switch between 3 tabs: Multi-Agent, Orchestration Agent, Catalog Agent Builder.
+  - Local images (`/images/ibm/agent1.webp`, `agent2.webp`, `agent3.webp`) used with `priority` prop.
+  - Background set to `bg-blue-100`.
+  - Icons for tabs loaded from `lucide-react` (`Bot`, `Share2`, `Boxes`).
+  - All feature lists and "Read more" buttons correctly mapped to the active tab.
+
+#### 19. `ProductPage.tsx` (DetailedMain)
+
+- **Functionality:** Product portfolio page with sidebar navigation and FAQ.
+- **Features:**
+  - Hero section (Product Portfolio) wrapped in a rounded card with `bg-[#eef2ff]` (visual blue-150) and larger text sizing.
+  - "Product Categories" section includes a `Check` icon for every product name.
+  - Sidebar contains a static heading "All Products" (non-clickable) and clickable buttons for other links.
+  - FAQ section occupies full width above the footer and toggles open/close states.
+  - Sidebar uses `sticky top-24` CSS to follow the user down the page while scrolling.
+
 ## Styling and Color Scheme
 
 - **Primary Dark Blue (Text/Nav):** `#0f1f4b`
 - **Secondary/Active Blue:** `#1d4ed8`
 - **Form Panel Blue:** `#6985d3`
-- **Backgrounds:** `bg-slate-100`, `bg-blue-100`, transparent.
+- **Backgrounds:** `bg-slate-100`, `bg-blue-100`, `bg-[#eef2ff]`, transparent.
 - **Typography:** Bold, heavy fonts for headings (`font-bold`, `font-black`), light fonts for body text (`font-light`).
-- **Animations:** `transition-all duration-500` for smooth UI feedback. `requestAnimationFrame` for smooth carousels.
+- **Animations:** `transition-all duration-500` for smooth UI feedback. `requestAnimationFrame` for smooth carousels and auto-zoom.
 
 ## Important Notes
 
-- All images are stored in the `public/images` and `public/images/logos` directories.
-- No external CSS frameworks are used; everything is Tailwind or inline style.
+- All local images are stored in the `public/images`, `public/images/logos`, and `public/images/ibm` directories.
+- External images from `spsnet.com` and `images.unsplash.com` must be configured in `next.config.ts` under `images.remotePatterns`.
 - All components are "use client" for interactivity.
 - Scrollbars are hidden for the carousels to maintain a clean look.

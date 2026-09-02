@@ -102,11 +102,28 @@ export default function HeroSection() {
     }
   };
 
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsModalOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen]);
+
   return (
-    <section className="relative h-screen min-h-200 w-full max-w-[100vw] overflow-hidden bg-slate-950">
+    <section
+      aria-roledescription="carousel"
+      aria-label="Featured highlights"
+      className="relative h-screen min-h-200 w-full max-w-[100vw] overflow-hidden bg-slate-950"
+    >
       {slides.map((slide, index) => (
-        <div
+        <article
           key={slide.id}
+          aria-roledescription="slide"
+          aria-label={`${index + 1} of ${slides.length}: ${slide.title}`}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
             index === current ? "opacity-100 z-10" : "opacity-0 z-0"
           }`}
@@ -150,50 +167,54 @@ export default function HeroSection() {
               )}
 
               <div className="mt-8 flex flex-wrap items-center gap-5">
-                <button className="bg-[#4d75e6] hover:bg-[#1e40af] border-blue-950 text-white font-semibold px-8 py-3.5 rounded-lg transition shadow-2xl text-lg">
+                <button className="bg-[#4d75e6] hover:bg-[#1e40af] border-blue-950 text-white font-semibold px-8 py-3.5 rounded-lg transition shadow-2xl text-lg focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-white">
                   {slide.primaryBtnText}
                 </button>
                 <button
                   onClick={() => handleSecondaryClick(slide)}
-                  className="bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-white font-semibold px-8 py-3.5 rounded-lg transition text-lg"
+                  className="bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-white font-semibold px-8 py-3.5 rounded-lg transition text-lg focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   {slide.secondaryBtnText}
                 </button>
               </div>
             </div>
           </div>
-        </div>
+        </article>
       ))}
 
       <button
         onClick={prevSlide}
         aria-label="Previous slide"
-        className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/50 hover:bg-slate-900/80 text-white backdrop-blur-sm transition"
+        className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/50 hover:bg-slate-900/80 text-white backdrop-blur-sm transition focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-white"
       >
-        <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+        <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
       </button>
       <button
         onClick={nextSlide}
         aria-label="Next slide"
-        className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/50 hover:bg-slate-900/80 text-white backdrop-blur-sm transition"
+        className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/50 hover:bg-slate-900/80 text-white backdrop-blur-sm transition focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-white"
       >
-        <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
+        <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
       </button>
 
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+      <nav
+        aria-label="Slide selection"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2"
+      >
         {slides.map((slide, index) => (
           <button
             key={slide.id}
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
+            aria-current={index === current ? "true" : undefined}
+            className={`h-1.5 rounded-full transition-all duration-300 focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-white ${
               index === current
                 ? "w-8 bg-[#1d4ed8]"
                 : "w-1.5 bg-white/40 hover:bg-white/60"
             }`}
           />
         ))}
-      </div>
+      </nav>
 
       {isModalOpen && (
         <div
@@ -201,19 +222,25 @@ export default function HeroSection() {
           onClick={() => setIsModalOpen(false)}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="quote-modal-title"
             className="bg-white rounded-2xl shadow-2xl max-w-xl w-full p-6 text-slate-900 animate-in fade-in zoom-in-95"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-slate-200 pb-4">
-              <h2 className="text-xl font-bold text-slate-900">
+              <h2
+                id="quote-modal-title"
+                className="text-xl font-bold text-slate-900"
+              >
                 Request a Quote
               </h2>
               <button
                 onClick={() => setIsModalOpen(false)}
                 aria-label="Close modal"
-                className="text-slate-400 hover:text-slate-700 transition"
+                className="text-slate-400 hover:text-slate-700 transition focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#1d4ed8] rounded"
               >
-                <X className="h-5 w-5" />
+                <X className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
 
@@ -291,13 +318,13 @@ export default function HeroSection() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="text-xs font-bold tracking-wide text-slate-500 hover:text-slate-800 transition"
+                  className="text-xs font-bold tracking-wide text-slate-500 hover:text-slate-800 transition focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-[#1d4ed8] rounded"
                 >
                   CANCEL
                 </button>
                 <button
                   type="submit"
-                  className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white font-semibold px-6 py-2 rounded-lg text-sm transition"
+                  className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white font-semibold px-6 py-2 rounded-lg text-sm transition focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   SEND MESSAGE
                 </button>
