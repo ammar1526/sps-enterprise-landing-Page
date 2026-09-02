@@ -683,6 +683,12 @@ export default function Navbar() {
                       SPS empowers enterprises with Cybersecurity, Cloud, AI &
                       Automation.
                     </p>
+                    <Link
+                      href="/product/product-detail"
+                      className="text-blue-400 hover:text-blue-300 font-bold text-sm transition mt-2 inline-block"
+                    >
+                      View All Products
+                    </Link>
                   </div>
                   <p className="font-bold text-sm text-white">SPS</p>
                   {["MYID", "Azalio", "Fabrico", "BMS", "CSM"].map((item) => (
