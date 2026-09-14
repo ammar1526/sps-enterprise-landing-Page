@@ -14,7 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sps-example.com";
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://sps-enterprise-landing-page.vercel.app";
+
+const coverImage = `${siteUrl}/images/sps-cover.png`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
       "SPS empowers enterprises with Cybersecurity, Cloud, AI & Automation solutions that reduce operational costs and enhance customer experience.",
     images: [
       {
-        url: "/images/sps-cover.png",
+        url: coverImage,
         width: 1200,
         height: 630,
         alt: "SPS - Cybersecurity, Cloud, AI & Automation Solutions",
@@ -57,7 +60,10 @@ export const metadata: Metadata = {
     title: "SPS | Cybersecurity, Cloud, AI & Automation Solutions",
     description:
       "SPS empowers enterprises with Cybersecurity, Cloud, AI & Automation solutions that reduce operational costs and enhance customer experience.",
-    images: ["/images/sps-cover.png"],
+    images: [coverImage],
+  },
+  other: {
+    image: coverImage,
   },
 };
 
