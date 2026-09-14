@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       "SPS empowers enterprises with Cybersecurity, Cloud, AI & Automation solutions that reduce operational costs and enhance customer experience.",
     images: [
       {
-        url: "/images/og-image.webp",
+        url: "/images/sps-cover.png",
         width: 1200,
         height: 630,
         alt: "SPS - Cybersecurity, Cloud, AI & Automation Solutions",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: "SPS | Cybersecurity, Cloud, AI & Automation Solutions",
     description:
       "SPS empowers enterprises with Cybersecurity, Cloud, AI & Automation solutions that reduce operational costs and enhance customer experience.",
-    images: ["/images/og-image.webp"],
+    images: ["/images/sps-cover.png"],
   },
 };
 
