@@ -3,14 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Grid,
-  ArrowRight,
-  ChevronDown,
-  Menu,
-  X,
-  ChevronRight,
-} from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X, ChevronRight } from "lucide-react";
 
 export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -115,11 +108,14 @@ export default function Navbar() {
                   </h4>
                   <ul className="space-y-2 text-slate-600">
                     {[
-                      { name: "MYID Self Verify", href: "/" },
-                      { name: "Azalio", href: "/" },
-                      { name: "Fabrico", href: "/" },
-                      { name: "BMS", href: "/" },
-                      { name: "CSM", href: "/" },
+                      {
+                        name: "MYID Self Verify",
+                        href: "https://www.myidselfverify.com/",
+                      },
+                      { name: "Azalio", href: "https://www.azal.io/" },
+                      { name: "Fabrico", href: "https://www.fabrico.com/" },
+                      { name: "BMS", href: "/product/sps/bms" },
+                      { name: "CSM", href: "/product/sps/bms" },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -137,9 +133,12 @@ export default function Navbar() {
                   <ul className="space-y-2 text-slate-600">
                     {[
                       { name: "Automation", href: "/product/ibm/automation" },
-                      { name: "Data & AI", href: "/" },
-                      { name: "Security", href: "/" },
-                      { name: "Sustainability", href: "/" },
+                      { name: "Data & AI", href: "/product/ibm/automation" },
+                      { name: "Security", href: "/product/ibm/automation" },
+                      {
+                        name: "Sustainability",
+                        href: "/product/ibm/automation",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -174,7 +173,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Services Menu */}
           <div
             className="relative h-full flex items-center px-4 cursor-pointer shrink-0"
             onMouseEnter={() => handleMouseEnter("services")}
@@ -216,7 +214,10 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Cybersecurity</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "Network Security", href: "/" },
+                      {
+                        name: "Network Security",
+                        href: "/services/cybersecurity/network-security",
+                      },
                       { name: "SMaaS", href: "/" },
                       { name: "GRC", href: "/" },
                       { name: "Identity & Access", href: "/" },
@@ -235,7 +236,7 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Cloud</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "Devops", href: "/" },
+                      { name: "Devops", href: "/services/cloud/devops" },
                       { name: "Migration Services", href: "/" },
                     ].map((item) => (
                       <li
@@ -330,7 +331,7 @@ export default function Navbar() {
                   />
                 </div>
                 <p className="text-xs text-slate-600 mb-3">
-                  Accelerate your county's digital transformation with an
+                  Accelerate your county&apos;s digital transformation with an
                   executive-led strategy.
                 </p>
                 <Link href="/" className="text-xs font-bold text-blue-600">
@@ -459,7 +460,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Spinnlabs Menu */}
           <div
             className="relative h-full flex items-center px-4 cursor-pointer shrink-0"
             onMouseEnter={() => handleMouseEnter("spinnlabs")}
@@ -493,7 +493,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Activities Menu */}
           <div
             className="relative h-full flex items-center px-4 cursor-pointer shrink-0"
             onMouseEnter={() => handleMouseEnter("activities")}
@@ -528,7 +527,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Aboutus Menu */}
           <div
             className="relative h-full flex items-center px-4 cursor-pointer shrink-0"
             onMouseEnter={() => handleMouseEnter("about")}
@@ -559,7 +557,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Contracts Submenu */}
           <div
             className="relative h-full flex items-center px-4 cursor-pointer group shrink-0"
             onMouseEnter={() => handleMouseEnter("contracts")}
