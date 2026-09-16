@@ -6,8 +6,10 @@ interface Client {
 }
 
 const clients: Client[] = [
-  { name: "Physician Loan", logo: "/images/logos/physician-loan.png" },
-  { name: "Total Vision", logo: "/images/logos/total-vision.jpg" },
+  { name: "Meta Coastal", logo: "/images/logos/metacoastal.webp" },
+  { name: "Anne Arundel County", logo: "/images/logos/anne-arundel.webp" },
+  { name: "Allied Bank", logo: "/images/logos/allied-bank.webp" },
+  { name: "Askari Bank", logo: "/images/logos/askari-bank.webp" },
 ];
 
 export default function Customers() {

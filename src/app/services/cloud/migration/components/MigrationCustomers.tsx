@@ -16,7 +16,7 @@ const clients: Client[] = [
 
 export default function Customers() {
   return (
-    <section className="bg-white">
+    <section className="bg-blue-100">
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12">
         <h2 className="text-center text-2xl font-bold text-[#0a0f1e] sm:text-3xl">
           Customers we are proud to work with

@@ -355,11 +355,26 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Public Sector</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "County Government", href: "/" },
-                      { name: "Healthcare", href: "/" },
-                      { name: "Government", href: "/" },
-                      { name: "Public Safety", href: "/" },
-                      { name: "Education", href: "/" },
+                      {
+                        name: "County Government",
+                        href: "/verticals/public-sector/county-government",
+                      },
+                      {
+                        name: "Healthcare",
+                        href: "/verticals/public-sector/healthcare",
+                      },
+                      {
+                        name: "Government",
+                        href: "/verticals/public-sector/government",
+                      },
+                      {
+                        name: "Public Safety",
+                        href: "/verticals/public-sector/public-safety",
+                      },
+                      {
+                        name: "Education",
+                        href: "/verticals/public-sector/education",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
