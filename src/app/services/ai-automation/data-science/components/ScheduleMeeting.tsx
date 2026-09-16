@@ -16,15 +16,13 @@ export default function ScheduleMeeting() {
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-6 py-16 sm:px-8 lg:grid-cols-2 lg:px-12 lg:py-20">
         <div>
           <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
-            Schedule a meeting with our DevOps Executive
+            Schedule a meeting with our Data Science Executive
           </h2>
           <p className="mt-4 max-w-7xl text-sm leading-relaxed text-slate-300 md:text-base">
-            Adnan is leading the Cloud Business Unit at SPS. He is responsible
-            for business growth and taking advantage of the unprecedented
-            opportunities available in cloud space. He also laid the foundation
-            of four practices within the cloud group; Pubic Cloud, Hybrid Cloud,
-            DevOps, and Cloud Classic. He is also providing leadership to
-            Internal Business Process Automation and IT Operations for SPS.
+            Schedule a strategic consultation with our Data Science Executive to
+            align your analytics roadmap with core business objectives. Discover
+            how advanced machine learning models and data-driven insights can
+            accelerate your enterprise growth and operational efficiency.
           </p>
 
           <a
@@ -38,8 +36,8 @@ export default function ScheduleMeeting() {
         <div className="relative mx-auto h-72 w-72 sm:h-80 sm:w-80 lg:ml-auto lg:mr-0">
           <div className="relative h-full w-full overflow-hidden rounded-2xl border-4 border-blue-400/60 shadow-2xl shadow-blue-400/20 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-400/50">
             <Image
-              src="/images/devops/Siradnan.png"
-              alt="DevOps Executive"
+              src="/images/data-science/data-science-executive.jpeg"
+              alt="Data Science Executive"
               fill
               sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 320px"
               className="object-cover object-top transition-transform duration-500 hover:scale-110"

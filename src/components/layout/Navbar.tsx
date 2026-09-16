@@ -87,6 +87,7 @@ export default function Navbar() {
                     src="/images/pnav.webp"
                     alt="Cloud Security"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 20vw"
                     className="object-cover"
                   />
                 </div>
@@ -195,6 +196,7 @@ export default function Navbar() {
                     src="/images/snav.webp"
                     alt="Services"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 20vw"
                     className="object-cover"
                   />
                 </div>
@@ -218,8 +220,8 @@ export default function Navbar() {
                         name: "Network Security",
                         href: "/services/cybersecurity/network-security",
                       },
-                      { name: "SMaaS", href: "/" },
-                      { name: "GRC", href: "/" },
+                      { name: "SMaaS", href: "/services/cybersecurity/smaas" },
+                      { name: "GRC", href: "/services/cybersecurity/grc" },
                       { name: "Identity & Access", href: "/" },
                       { name: "Threat Management", href: "/" },
                     ].map((item) => (
@@ -237,7 +239,10 @@ export default function Navbar() {
                   <ul className="space-y-1.5 text-slate-600">
                     {[
                       { name: "Devops", href: "/services/cloud/devops" },
-                      { name: "Migration Services", href: "/" },
+                      {
+                        name: "Migration Services",
+                        href: "/services/cloud/migration",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -252,8 +257,14 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">AI & Automation</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "Automation", href: "/" },
-                      { name: "Data Science", href: "/" },
+                      {
+                        name: "Automation",
+                        href: "/services/ai-automation/data-science",
+                      },
+                      {
+                        name: "Data Science",
+                        href: "/services/ai-automation/data-science",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -327,6 +338,7 @@ export default function Navbar() {
                     src="/images/snav.webp"
                     alt="Verticals"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 20vw"
                     className="object-cover"
                   />
                 </div>

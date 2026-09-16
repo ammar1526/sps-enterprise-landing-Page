@@ -6,8 +6,7 @@ interface Client {
 }
 
 const clients: Client[] = [
-  { name: "Physician Loan", logo: "/images/logos/physician-loan.png" },
-  { name: "Total Vision", logo: "/images/logos/total-vision.jpg" },
+  { name: "MyChart", logo: "/images/logos/mychart.png" },
 ];
 
 export default function Customers() {

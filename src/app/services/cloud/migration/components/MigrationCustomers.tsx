@@ -6,8 +6,12 @@ interface Client {
 }
 
 const clients: Client[] = [
-  { name: "Physician Loan", logo: "/images/logos/physician-loan.png" },
-  { name: "Total Vision", logo: "/images/logos/total-vision.jpg" },
+  { name: " The Midwest Bank", logo: "/images/logos/midwest.webp" },
+  { name: "Hamdard", logo: "/images/logos/hamdard.webp" },
+  { name: "HighMark", logo: "/images/logos/highmark.webp" },
+  { name: "KElectric", logo: "/images/logos/kelectric.webp" },
+  { name: "NDC Tech", logo: "/images/logos/ndc-tech.webp" },
+  { name: "Hamdard", logo: "/images/logos/act-ps.webp" },
 ];
 
 export default function Customers() {

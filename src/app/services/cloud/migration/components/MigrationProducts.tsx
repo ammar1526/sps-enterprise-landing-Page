@@ -83,16 +83,16 @@ export default function FeaturedProducts() {
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:max-w-3xl">
           <ProductCard
-            title="CSM"
-            description="CSM is a centralized platform for compliance management to address software management, and infrastructure information."
-            imageSrc="/images/devops/CSM.jpg"
-            imageAlt="CSM Platform"
+            title="Microsoft 365"
+            description="Microsoft 365 is a suite of productivity applications and services for business and personal use."
+            imageSrc="/images/migration/productimg.jpg"
+            imageAlt="Microsoft 365 Platform"
           />
           <ProductCard
-            title="HerDomain"
-            description="HerDomain is a developer-focused platform built to monitor systems and protect customer information in a growing product ecosystem."
-            imageSrc="/images/devops/herdomain.png"
-            imageAlt="HerDomain Platform"
+            title="Microsoft Azure"
+            description="Microsoft Azure is a cloud computing service for building, testing, deploying, and managing applications and services."
+            imageSrc="/images/migration/productimg.jpg"
+            imageAlt="Microsoft Azure Platform"
           />
         </div>
       </div>

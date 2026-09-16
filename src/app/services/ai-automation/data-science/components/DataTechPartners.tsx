@@ -11,94 +11,44 @@ interface Partner {
 
 const partners: Partner[] = [
   {
-    name: "Lenovo",
-    description: "Devices • Infrastructure • Computing",
-    image: "/images/techpartners/lenovo.webp",
+    name: "ATLASSIAN",
+    description: "Collaboration • Project Tracking & Agile Workflows",
+    image: "/images/data-science/atlassian.webp",
+  },
+  {
+    name: "IBM",
+    description: "Enterprise AI • Hybrid Cloud & Security Solutions",
+    image: "/images/data-science/ibm.webp",
   },
   {
     name: "SAP",
-    description: "Enterprise Resource Planning",
-    image: "/images/techpartners/sap.webp",
+    description: "Enterprise Resource Planning • Business Process & Analytics",
+    image: "/images/data-science/sap.webp",
   },
   {
-    name: "Red Hat",
-    description: "Open Source Cloud",
-    image: "/images/techpartners/red-hat.webp",
-  },
-  {
-    name: "Microsoft",
-    description: "Cloud • Security • Productivity Solutions",
-    image: "/images/techpartners/microsoft.webp",
+    name: "Data Iku",
+    description: "AI • Machine Learning & Collaborative Data Science",
+    image: "/images/data-science/dataiku.webp",
   },
   {
     name: "Google",
-    description: "Cloud • Data • Infrastructure",
-    image: "/images/techpartners/google.webp",
+    description: "Cloud Computing • Big Data & Artificial Intelligence",
+    image: "/images/data-science/google.webp",
   },
   {
-    name: "IBM Security",
-    description: "Identity • Access & Zero Trust Solutions",
-    image: "/images/techpartners/ibm-security.webp",
+    name: "AWS",
+    description: "Cloud Infrastructure • Scalable Services & DevOps",
+    image: "/images/data-science/aws.webp",
   },
   {
-    name: "Juniper",
-    description: "Networking • AI • Routing",
-    image: "/images/techpartners/juniper-networks.webp",
+    name: "Microsoft",
+    description: "Cloud Platforms • Enterprise Software & Productivity",
+    image: "/images/data-science/microsoft.webp",
   },
   {
-    name: "Nutanix",
-    description: "Hybrid Multicloud Infrastructure",
-    image: "/images/techpartners/nutanix.webp",
-  },
-  {
-    name: "Sophos",
-    description: "Endpoint • Network Security",
-    image: "/images/techpartners/sophos.webp",
-  },
-  {
-    name: "Keysight",
-    description: "Design • Emulation • Test",
-    image: "/images/techpartners/keysight.webp",
-  },
-  {
-    name: "Okta",
-    description: "Identity • Access Management",
-    image: "/images/techpartners/okta.webp",
-  },
-  {
-    name: "Fortinet",
-    description: "Firewall • Network Security",
-    image: "/images/techpartners/fortinet.webp",
-  },
-  {
-    name: "Schneider Electric",
-    description: "Energy • Automation • Sustainability",
-    image: "/images/techpartners/Schneider-Electric2.webp",
-  },
-  {
-    name: "Cyber GRX",
-    description: "Third-Party Risk Management",
-    image: "/images/techpartners/cyber-grx.webp",
-  },
-  {
-    name: "Time stream",
-    description: "Time-Series Database Analytics",
-    image: "/images/techpartners/timestream.webp",
-  },
-  {
-    name: "Know Be 4",
-    description: "Security Awareness Training",
-    image: "/images/techpartners/knowBe4.webp",
-  },
-  {
-    name: "Tenable",
-    description: "Vulnerability • Exposure Management",
-    image: "/images/techpartners/tenable1.webp",
-  },
-  {
-    name: "Fischer Identity",
-    description: "Governance • Identity Lifecycle",
-    image: "/images/techpartners/fischer-identity.webp",
+    name: "APC",
+    description: "Power Protection • Data Center Infrastructure & Cooling",
+    image: "/images/data-science/apc.webp",
   },
 ];
 

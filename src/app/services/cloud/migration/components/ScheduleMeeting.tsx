@@ -16,7 +16,7 @@ export default function ScheduleMeeting() {
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-6 py-16 sm:px-8 lg:grid-cols-2 lg:px-12 lg:py-20">
         <div>
           <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
-            Schedule a meeting with our DevOps Executive
+            Schedule a meeting with our Migration Services Executive
           </h2>
           <p className="mt-4 max-w-7xl text-sm leading-relaxed text-slate-300 md:text-base">
             Adnan is leading the Cloud Business Unit at SPS. He is responsible
@@ -24,7 +24,7 @@ export default function ScheduleMeeting() {
             opportunities available in cloud space. He also laid the foundation
             of four practices within the cloud group; Pubic Cloud, Hybrid Cloud,
             DevOps, and Cloud Classic. He is also providing leadership to
-            Internal Business Process Automation and IT Operations for SPS.
+            Internal Business Process Automation and IT Operations for SPS
           </p>
 
           <a

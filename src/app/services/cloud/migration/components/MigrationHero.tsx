@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronRight, PhoneCall } from "lucide-react";
@@ -9,38 +9,61 @@ interface ServiceCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
+  showReadMore?: boolean;
 }
 
-function ServiceCard({ icon, title, description }: ServiceCardProps) {
+function ServiceCard({
+  icon,
+  title,
+  description,
+  showReadMore = false,
+}: ServiceCardProps) {
+  const [expanded, setExpanded] = useState(false);
+  const words = description.split(" ");
+  const isLong = showReadMore && words.length > 20;
+  const displayText =
+    expanded || !isLong ? description : `${words.slice(0, 20).join(" ")}...`;
+
   return (
-    <div className="group flex flex-col rounded-2xl bg-white p-7 shadow-[0_20px_45px_-15px_rgba(10,15,30,0.35)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_55px_-15px_rgba(10,15,30,0.45)]">
+    <div className="group flex h-full flex-col rounded-2xl bg-white p-7 shadow-[0_20px_45px_-15px_rgba(10,15,30,0.35)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_55px_-15px_rgba(10,15,30,0.45)]">
       <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[#0070f3]/10 shadow-[0_0_20px_rgba(0,112,243,0.15)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(0,112,243,0.25)]">
         {icon}
       </div>
       <h3 className="text-lg font-semibold text-[#0a0f1e]">{title}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-slate-500">
-        {description}
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-500">
+        {displayText}
+        {isLong && (
+          <button
+            type="button"
+            onClick={() => setExpanded((prev) => !prev)}
+            className="ml-1 inline font-semibold text-[#0070f3] transition-colors hover:text-[#0056b3]"
+          >
+            {expanded ? "Read Less" : "Read More"}
+          </button>
+        )}
       </p>
-      <a
-        href="#"
-        className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-[#0a0f1e]/15 px-5 py-2.5 text-sm font-medium text-[#0a0f1e] transition-all duration-300 hover:border-[#0070f3] hover:text-[#0070f3] group-hover:gap-3"
-      >
-        Learn More
-        <svg
-          className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+      <div className="mt-6 flex justify-start">
+        <a
+          href="#"
+          className="inline-flex w-fit items-center gap-2 rounded-full border border-[#0a0f1e]/15 px-5 py-2.5 text-sm font-medium text-[#0a0f1e] transition-all duration-300 hover:border-[#0070f3] hover:text-[#0070f3] group-hover:gap-3"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M14 5l7 7m0 0l-7 7m7-7H3"
-          />
-        </svg>
-      </a>
+          Learn More
+          <svg
+            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
   );
 }
@@ -105,12 +128,14 @@ export default function DetailHero() {
 
         <div className="relative z-10 container mx-auto max-w-350 px-6 py-32 lg:py-44 text-center">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
-            DevOps
+            Migration Services
           </h1>
 
           <p className="max-w-3xl mx-auto text-lg sm:text-xl text-white/90 font-light leading-relaxed mb-8">
-            DevOps services engineered to accelerate delivery through continuous
-            integration, automation, and modern development practices.
+            Our Cloud Classic practice has over 25 years of experience in the
+            planning, design, deployment and support of IT systems. We
+            specialize in the compute, storage and networking offerings from the
+            following technology providers
           </p>
 
           <nav className="flex justify-center items-center gap-2 text-white font-medium">
@@ -141,36 +166,53 @@ export default function DetailHero() {
       </section>
 
       <div className="relative max-w-full z-10 mx-auto flow-root bg-white px-6 pb-20 sm:px-8 lg:px-12">
-        <div className="grid w-full max-w-5xl mx-auto -mt-32 gap-6 sm:grid-cols-2">
+        <div className="grid w-full max-w-6xl mx-auto -mt-32 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <ServiceCard
             icon={
               <div className="relative h-7 w-7">
                 <Image
-                  src="/images/devops/cloudlogo1.jpeg"
-                  alt="Cloud Icon"
+                  src="/images/migration/miglogo1.jpeg"
+                  alt="VMware Icon"
                   fill
                   sizes="28px"
                   className="object-contain"
                 />
               </div>
             }
-            title="Cloud Application Development"
-            description="Cloud application development with modern, scalable practices for products, resources, and core infrastructure."
+            title="Migrate VMware Workload to Cloud"
+            description="SPS offers a seamless service for migrating VMware workloads to IBM Cloud, enhancing scalability, flexibility, and cost-efficiency. Our tailored approach includes comprehensive assessment, planning, and execution to ensure minimal downtime and optimal performance across your cloud infrastructure."
+            showReadMore
           />
           <ServiceCard
             icon={
               <div className="relative h-7 w-7">
                 <Image
-                  src="/images/devops/cloudlogo2.jpeg"
-                  alt="Shield Icon"
+                  src="/images/migration/miglogo2.jpeg"
+                  alt="MS Exchange Icon"
                   fill
                   sizes="28px"
                   className="object-contain"
                 />
               </div>
             }
-            title="IT Ops and Support"
-            description="IT Ops and Support for operational systems and support, solutions with customer onboarding, and change management."
+            title="Migrate MS Exchange to office 365"
+            description="Move to Office 365 effortlessly with SPS. Our migration service ensures secure, minimal-downtime transitions, so you can quickly unlock the collaboration and productivity benefits of Office 365. Let SPS guide your journey to a modern, cloud-based workplace."
+            showReadMore
+          />
+          <ServiceCard
+            icon={
+              <div className="relative h-7 w-7">
+                <Image
+                  src="/images/migration/miglogo3.jpeg"
+                  alt="IBM Power Icon"
+                  fill
+                  sizes="28px"
+                  className="object-contain"
+                />
+              </div>
+            }
+            title="Migrate IBM Power to Cloud"
+            description="SPS Team can help our customers to Migrate IBM Power on-prem workload including applications, data, users, and network to Cloud......"
           />
         </div>
       </div>
