@@ -38,7 +38,7 @@ const partners: Partner[] = [
   {
     name: "IBM Security",
     description: "Identity • Access & Zero Trust Solutions",
-    image: "/images/techpartners/ibm-security.webp",
+    image: "/images/techpartners/ibm1.webp",
   },
   {
     name: "Juniper",

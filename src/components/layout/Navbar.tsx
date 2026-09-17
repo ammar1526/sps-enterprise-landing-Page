@@ -906,11 +906,11 @@ export default function Navbar() {
                     },
                     {
                       name: "Public Safety",
-                      href: "/verticals/public-sector/public-safety",
+                      href: "/verticals/public-sector/government",
                     },
                     {
                       name: "Education",
-                      href: "/verticals/public-sector/education",
+                      href: "/verticals/public-sector/government",
                     },
                   ].map((item) => (
                     <Link
