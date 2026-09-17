@@ -314,7 +314,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Verticals Menu */}
           <div
             className="relative h-full flex items-center px-4 cursor-pointer shrink-0"
             onMouseEnter={() => handleMouseEnter("verticals")}
@@ -715,21 +714,30 @@ export default function Navbar() {
                     </Link>
                   </div>
                   <p className="font-bold text-sm text-white">SPS</p>
-                  {["MYID", "Azalio", "Fabrico", "BMS", "CSM"].map((item) => (
+                  {[
+                    {
+                      name: "MYID Self Verify",
+                      href: "https://www.myidselfverify.com/",
+                    },
+                    { name: "Azalio", href: "https://www.azal.io/" },
+                    { name: "Fabrico", href: "https://www.fabrico.com/" },
+                    { name: "BMS", href: "/product/sps/bms" },
+                    { name: "CSM", href: "/product/sps/bms" },
+                  ].map((item) => (
                     <Link
-                      key={item}
-                      href="/"
+                      key={item.name}
+                      href={item.href}
                       className="text-sm text-white/80 pl-2 block"
                     >
-                      {item}
+                      {item.name}
                     </Link>
                   ))}
                   <p className="font-bold text-sm pt-2 text-white">IBM</p>
                   {[
                     { name: "Automation", href: "/product/ibm/automation" },
-                    { name: "Data & AI", href: "/" },
-                    { name: "Security", href: "/" },
-                    { name: "Sustainability", href: "/" },
+                    { name: "Data & AI", href: "/product/ibm/automation" },
+                    { name: "Security", href: "/product/ibm/automation" },
+                    { name: "Sustainability", href: "/product/ibm/automation" },
                   ].map((item) => (
                     <Link
                       key={item.name}
@@ -740,17 +748,20 @@ export default function Navbar() {
                     </Link>
                   ))}
                   <p className="font-bold text-sm pt-2 text-white">Others</p>
-                  {["Cloud Mgmt", "Analytics", "IoT", "Blockchain"].map(
-                    (item) => (
-                      <Link
-                        key={item}
-                        href="/"
-                        className="text-sm text-white/80 pl-2 block"
-                      >
-                        {item}
-                      </Link>
-                    ),
-                  )}
+                  {[
+                    { name: "Cloud Management", href: "/" },
+                    { name: "Analytics Tools", href: "/" },
+                    { name: "IoT Solutions", href: "/" },
+                    { name: "Blockchain", href: "/" },
+                  ].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm text-white/80 pl-2 block"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
@@ -777,35 +788,90 @@ export default function Navbar() {
                     />
                   </div>
                   <p className="font-bold text-sm text-white">Cybersecurity</p>
-                  {["Network", "SMaaS", "GRC", "Identity", "Threat"].map(
-                    (item) => (
-                      <Link
-                        key={item}
-                        href="/"
-                        className="text-sm text-white/80 pl-2 block"
-                      >
-                        {item}
-                      </Link>
-                    ),
-                  )}
-                  <p className="font-bold text-sm pt-2 text-white">Cloud</p>
-                  {["Devops", "Migration"].map((item) => (
+                  {[
+                    {
+                      name: "Network Security",
+                      href: "/services/cybersecurity/network-security",
+                    },
+                    { name: "SMaaS", href: "/services/cybersecurity/smaas" },
+                    { name: "GRC", href: "/services/cybersecurity/grc" },
+                    { name: "Identity & Access", href: "/" },
+                    { name: "Threat Management", href: "/" },
+                  ].map((item) => (
                     <Link
-                      key={item}
-                      href="/"
+                      key={item.name}
+                      href={item.href}
                       className="text-sm text-white/80 pl-2 block"
                     >
-                      {item}
+                      {item.name}
                     </Link>
                   ))}
-                  <p className="font-bold text-sm pt-2 text-white">AI</p>
-                  {["Automation", "Data Science"].map((item) => (
+                  <p className="font-bold text-sm pt-2 text-white">Cloud</p>
+                  {[
+                    { name: "Devops", href: "/services/cloud/devops" },
+                    {
+                      name: "Migration Services",
+                      href: "/services/cloud/migration",
+                    },
+                  ].map((item) => (
                     <Link
-                      key={item}
-                      href="/"
+                      key={item.name}
+                      href={item.href}
                       className="text-sm text-white/80 pl-2 block"
                     >
-                      {item}
+                      {item.name}
+                    </Link>
+                  ))}
+                  <p className="font-bold text-sm pt-2 text-white">
+                    AI & Automation
+                  </p>
+                  {[
+                    {
+                      name: "Automation",
+                      href: "/services/ai-automation/data-science",
+                    },
+                    {
+                      name: "Data Science",
+                      href: "/services/ai-automation/data-science",
+                    },
+                  ].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm text-white/80 pl-2 block"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <p className="font-bold text-sm pt-2 text-white">
+                    Collaboration
+                  </p>
+                  {[
+                    { name: "Training", href: "/" },
+                    { name: "Events", href: "/" },
+                  ].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm text-white/80 pl-2 block"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <p className="font-bold text-sm pt-2 text-white">Training</p>
+                  {[
+                    { name: "SPS Oil & Gas", href: "/" },
+                    { name: "IBM", href: "/" },
+                    { name: "Google", href: "/" },
+                    { name: "AWS", href: "/" },
+                    { name: "See More", href: "/" },
+                  ].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm text-white/80 pl-2 block"
+                    >
+                      {item.name}
                     </Link>
                   ))}
                 </div>
@@ -824,26 +890,121 @@ export default function Navbar() {
               </button>
               {mobileActive === "mverticals" && (
                 <div className="pl-4 pb-4 space-y-2">
-                  <p className="font-bold text-sm text-white">Public</p>
-                  {["County", "Healthcare", "Gov", "Safety"].map((item) => (
+                  <p className="font-bold text-sm text-white">Public Sector</p>
+                  {[
+                    {
+                      name: "County Government",
+                      href: "/verticals/public-sector/county-government",
+                    },
+                    {
+                      name: "Healthcare",
+                      href: "/verticals/public-sector/healthcare",
+                    },
+                    {
+                      name: "Government",
+                      href: "/verticals/public-sector/government",
+                    },
+                    {
+                      name: "Public Safety",
+                      href: "/verticals/public-sector/public-safety",
+                    },
+                    {
+                      name: "Education",
+                      href: "/verticals/public-sector/education",
+                    },
+                  ].map((item) => (
                     <Link
-                      key={item}
-                      href="/"
+                      key={item.name}
+                      href={item.href}
                       className="text-sm text-white/80 pl-2 block"
                     >
-                      {item}
+                      {item.name}
                     </Link>
                   ))}
                   <p className="font-bold text-sm pt-2 text-white">
                     Industrial
                   </p>
-                  {["Mfg", "Textiles", "Utilities"].map((item) => (
+                  {[
+                    { name: "Manufacturing", href: "/" },
+                    { name: "Textiles", href: "/" },
+                    { name: "Utilities", href: "/" },
+                  ].map((item) => (
                     <Link
-                      key={item}
-                      href="/"
+                      key={item.name}
+                      href={item.href}
                       className="text-sm text-white/80 pl-2 block"
                     >
-                      {item}
+                      {item.name}
+                    </Link>
+                  ))}
+                  <p className="font-bold text-sm pt-2 text-white">
+                    Healthcare
+                  </p>
+                  {[
+                    { name: "Compliance-requirements", href: "/" },
+                    { name: "Health Systems", href: "/" },
+                    { name: "Interoperability", href: "/" },
+                    { name: "Multi-Clinic", href: "/" },
+                  ].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm text-white/80 pl-2 block"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <p className="font-bold text-sm pt-2 text-white">Retail</p>
+                  {[
+                    { name: "Convenience Store", href: "/" },
+                    { name: "Marketing", href: "/" },
+                    { name: "Omni-channel", href: "/" },
+                    { name: "Personalization", href: "/" },
+                  ].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm text-white/80 pl-2 block"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <p className="font-bold text-sm pt-2 text-white">Energy</p>
+                  {[
+                    { name: "Electric", href: "/" },
+                    { name: "Oil & Gas", href: "/" },
+                  ].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm text-white/80 pl-2 block"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <p className="font-bold text-sm pt-2 text-white">Financial</p>
+                  {[
+                    { name: "Banking", href: "/" },
+                    { name: "Insurance", href: "/" },
+                  ].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm text-white/80 pl-2 block"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <p className="font-bold text-sm pt-2 text-white">
+                    Telecommunications
+                  </p>
+                  {[{ name: "Telcos", href: "/" }].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm text-white/80 pl-2 block"
+                    >
+                      {item.name}
                     </Link>
                   ))}
                 </div>

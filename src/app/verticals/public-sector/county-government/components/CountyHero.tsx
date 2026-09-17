@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function CountyHero() {
   return (
-    <section className="relative w-full h-150 flex items-center bg-slate-900 overflow-hidden">
+    <section className="relative w-full min-h-125 h-auto sm:min-h-150 lg:h-150 flex items-center bg-slate-900 overflow-hidden py-16 lg:py-0">
       <Image
         src="/images/county-government/CountyHerobg.png"
         alt="Government Hero"
@@ -60,19 +60,19 @@ export default function CountyHero() {
         </a>
       </div>
 
-      <div className="relative mt-20 z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:mt-20">
         <div className="max-w-2xl text-white">
-          <span className="inline-block py-1 px-3 bg-[#7494ec6e] border-3 border-blue-500 rounded-full text-sm font-semibold mb-4">
+          <span className="inline-block py-1 px-3 bg-[#7494ec6e] border-3 border-blue-500 rounded-full text-xs sm:text-sm font-semibold mb-4">
             PUBLIC SECTOR
           </span>
-          <h1 className="text-6xl font-bold leading-tight mb-6 drop-shadow-xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 drop-shadow-xl">
             County
             <span className="text-blue-400 ml-1 drop-shadow-xl">
               {" "}
               Government
             </span>
           </h1>
-          <p className="text-sm mb-8 text-slate-100 w-3xl drop-shadow-xl">
+          <p className="text-xs sm:text-sm md:text-base mb-6 sm:mb-8 text-slate-100 max-w-full lg:w-3xl drop-shadow-xl leading-relaxed">
             Accelerate your county’s digital transformation with an
             executive-led strategy focused on cybersecurity, cloud, and AI. We
             start with a county-wide Cyber Range event to raise executive
