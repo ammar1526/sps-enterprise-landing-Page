@@ -133,7 +133,7 @@ const tabs: TabItem[] = [
   },
 ];
 
-export default function CountyService() {
+export default function ManufacturingServices() {
   const [activeTab, setActiveTab] = useState("cybersecurity");
   const [activeService, setActiveService] = useState("network-visibility");
 
@@ -153,10 +153,10 @@ export default function CountyService() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">
-            Our Services for Government
+            Our Services for Manufacturing
           </h2>
           <p className="text-slate-500 text-sm sm:text-base">
-            Explore Government services we provide across our core practices
+            Explore Manufacturing services we provide across our core practices
           </p>
         </div>
 

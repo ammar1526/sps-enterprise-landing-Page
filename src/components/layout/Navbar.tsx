@@ -372,7 +372,7 @@ export default function Navbar() {
                       },
                       {
                         name: "Education",
-                        href: "/verticals/public-sector/education",
+                        href: "/verticals/public-sector/government",
                       },
                     ].map((item) => (
                       <li
@@ -388,9 +388,18 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Industrial</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "Manufacturing", href: "/" },
-                      { name: "Textiles", href: "/" },
-                      { name: "Utilities", href: "/" },
+                      {
+                        name: "Manufacturing",
+                        href: "/verticals/industrials/manufacturing",
+                      },
+                      {
+                        name: "Textiles",
+                        href: "/verticals/industrials/textile",
+                      },
+                      {
+                        name: "Utilities",
+                        href: "/verticals/industrials/manufacturing",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -906,7 +915,7 @@ export default function Navbar() {
                     },
                     {
                       name: "Public Safety",
-                      href: "/verticals/public-sector/government",
+                      href: "/verticals/public-sector/public-safety",
                     },
                     {
                       name: "Education",
@@ -925,9 +934,18 @@ export default function Navbar() {
                     Industrial
                   </p>
                   {[
-                    { name: "Manufacturing", href: "/" },
-                    { name: "Textiles", href: "/" },
-                    { name: "Utilities", href: "/" },
+                    {
+                      name: "Manufacturing",
+                      href: "/verticals/industrials/manufacturing",
+                    },
+                    {
+                      name: "Textiles",
+                      href: "/verticals/industrials/textile",
+                    },
+                    {
+                      name: "Utilities",
+                      href: "/verticals/industrials/manufacturing",
+                    },
                   ].map((item) => (
                     <Link
                       key={item.name}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import SpsPageLoader from "@/components/sections/SpsPageLoader";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -83,6 +84,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <SpsPageLoader />
         {children}
       </body>
     </html>
