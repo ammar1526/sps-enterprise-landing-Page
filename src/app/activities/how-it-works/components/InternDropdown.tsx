@@ -118,7 +118,7 @@ export default function InternshipSubNav() {
 
           <li className="relative mb-2">
             <Link
-              href="https://spsnet.com/temp-web/sps-enterprise/contactus/"
+              href="/Contact-Us"
               className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-300 text-gray-700 font-medium hover:bg-[#4c7eea] hover:text-white hover:border-[#4c7eea] transition duration-300"
             >
               <Mail className="w-5 h-5" />

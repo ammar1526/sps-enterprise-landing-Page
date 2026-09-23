@@ -684,7 +684,7 @@ export default function Navbar() {
           </div>
 
           <Link
-            href="#contact"
+            href="/Contact-Us"
             className="px-4 py-1.5 text-[13px] font-bold hover:text-blue-400 transition shrink-0 text-white"
           >
             Contact Us
