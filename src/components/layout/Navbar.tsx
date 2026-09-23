@@ -222,8 +222,14 @@ export default function Navbar() {
                       },
                       { name: "SMaaS", href: "/services/cybersecurity/smaas" },
                       { name: "GRC", href: "/services/cybersecurity/grc" },
-                      { name: "Identity & Access", href: "/" },
-                      { name: "Threat Management", href: "/" },
+                      {
+                        name: "Identity & Access",
+                        href: "/services/cybersecurity/grc",
+                      },
+                      {
+                        name: "Threat Management",
+                        href: "/services/cybersecurity/grc",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -279,8 +285,14 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Collaboration</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "Training", href: "/" },
-                      { name: "Events", href: "/" },
+                      {
+                        name: "Training",
+                        href: "/services/ai-automation/data-science",
+                      },
+                      {
+                        name: "Events",
+                        href: "/services/ai-automation/data-science",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -295,11 +307,11 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Training</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "SPS Oil & Gas", href: "/" },
-                      { name: "IBM", href: "/" },
-                      { name: "Google", href: "/" },
-                      { name: "AWS", href: "/" },
-                      { name: "See More", href: "/" },
+                      { name: "SPS Oil & Gas", href: "#" },
+                      { name: "IBM", href: "#" },
+                      { name: "Google", href: "#" },
+                      { name: "AWS", href: "#" },
+                      { name: "See More", href: "#" },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -414,10 +426,22 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Healthcare</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "Compliance-requirements", href: "/" },
-                      { name: "Health Systems", href: "/" },
-                      { name: "Interoperability", href: "/" },
-                      { name: "Multi-Clinic", href: "/" },
+                      {
+                        name: "Compliance-requirements",
+                        href: "/verticals/healthcare/Compliance-requirements",
+                      },
+                      {
+                        name: "Health Systems",
+                        href: "/verticals/healthcare/health-systems",
+                      },
+                      {
+                        name: "Multi-Clinic",
+                        href: "/verticals/healthcare/Compliance-requirements",
+                      },
+                      {
+                        name: "telehealth-remote-patient-monitoring",
+                        href: "/verticals/healthcare/telehealth-amp-remote-patient-monitoring",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -450,8 +474,11 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Energy</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "Electric", href: "/" },
-                      { name: "Oil & Gas", href: "/" },
+                      { name: "Electric", href: "/verticals/Energy/electric" },
+                      {
+                        name: "Oil & Gas",
+                        href: "/verticals/Energy/oil-amp-gas",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -466,8 +493,11 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Financial</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "Banking", href: "/" },
-                      { name: "Insurance", href: "/" },
+                      { name: "Banking", href: "/verticals/financial/banking" },
+                      {
+                        name: "Insurance",
+                        href: "/verticals/financial/banking",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -481,7 +511,9 @@ export default function Navbar() {
                 <div className="col-span-3">
                   <h4 className="font-bold mb-3">Telecommunications</h4>
                   <ul className="space-y-1.5 text-slate-600">
-                    {[{ name: "Telcos", href: "/" }].map((item) => (
+                    {[
+                      { name: "Telcos", href: "/verticals/telecommunication" },
+                    ].map((item) => (
                       <li
                         key={item.name}
                         className="hover:text-blue-600 cursor-pointer"
@@ -512,11 +544,14 @@ export default function Navbar() {
               }`}
             >
               {[
-                { name: "Overview", href: "/" },
-                { name: "Academia", href: "/" },
-                { name: "Industry", href: "/" },
-                { name: "Center of Expertise", href: "/" },
-                { name: "Startups", href: "/" },
+                { name: "Overview", href: "/SpinsLab/Overview" },
+                { name: "Academia", href: "/SpinsLab/Academia" },
+                { name: "Industry", href: "/SpinsLab/Industry" },
+                {
+                  name: "Center of Expertise",
+                  href: "/SpinsLab/centers-of-expertise",
+                },
+                { name: "Startups", href: "/SpinsLab/Startups" },
               ].map((item) => (
                 <div
                   key={item.name}
@@ -545,12 +580,27 @@ export default function Navbar() {
               }`}
             >
               {[
-                { name: "Roundtables", href: "/" },
-                { name: "Internship Program 2025", href: "/" },
-                { name: "Webinars", href: "/" },
-                { name: "Workshops", href: "/" },
-                { name: "Special Interest Groups", href: "/" },
-                { name: "Training", href: "/" },
+                { name: "Roundtables", href: "/activities/roundtable" },
+                {
+                  name: "Internship Program 2025",
+                  href: "/activities/how-it-works",
+                },
+                {
+                  name: "Webinars",
+                  href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                },
+                {
+                  name: "Workshops",
+                  href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                },
+                {
+                  name: "Special Interest Groups",
+                  href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                },
+                {
+                  name: "Training",
+                  href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                },
               ].map((item) => (
                 <div
                   key={item.name}
@@ -624,26 +674,8 @@ export default function Navbar() {
                 >
                   <div className="relative group/pricing w-full">
                     <div className="p-2 hover:bg-slate-100 rounded cursor-pointer flex justify-between items-center hover:text-blue-600">
-                      <Link href="/">Pricing</Link>{" "}
+                      <Link href="/vita-pricing">Pricing</Link>{" "}
                       <ChevronRight className="w-4 h-4" />
-                    </div>
-
-                    <div
-                      className={`absolute top-0 left-full ml-2 w-48 max-w-[90vw] bg-white text-slate-900 rounded-b-xl shadow-xl p-2 text-sm space-y-1 transition-all duration-300 ease-in-out ${
-                        activeMenu === "contracts"
-                          ? "opacity-0 translate-x-2 invisible pointer-events-none group-hover/pricing:opacity-100 group-hover/pricing:translate-x-0 group-hover/pricing:visible group-hover/pricing:pointer-events-auto"
-                          : "opacity-0 translate-x-2 invisible pointer-events-none"
-                      }`}
-                    >
-                      <div className="p-2 hover:bg-slate-100 rounded cursor-pointer hover:text-blue-600">
-                        <Link href="/">Basic</Link>
-                      </div>
-                      <div className="p-2 hover:bg-slate-100 rounded cursor-pointer hover:text-blue-600">
-                        <Link href="/">Enterprise</Link>
-                      </div>
-                      <div className="p-2 hover:bg-slate-100 rounded cursor-pointer hover:text-blue-600">
-                        <Link href="/">Custom</Link>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -661,7 +693,7 @@ export default function Navbar() {
 
         <div className="hidden lg:flex items-center gap-3 pl-6 border-l border-white/10 shrink-0">
           <Link
-            href="#internship"
+            href="/activities/how-it-works"
             className="border border-white/40 rounded-full px-5 py-1.5 text-xs font-bold hover:bg-white hover:text-slate-950 transition-all duration-200 whitespace-nowrap"
           >
             Internship
