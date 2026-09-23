@@ -836,8 +836,14 @@ export default function Navbar() {
                     },
                     { name: "SMaaS", href: "/services/cybersecurity/smaas" },
                     { name: "GRC", href: "/services/cybersecurity/grc" },
-                    { name: "Identity & Access", href: "/" },
-                    { name: "Threat Management", href: "/" },
+                    {
+                      name: "Identity & Access",
+                      href: "/services/cybersecurity/grc",
+                    },
+                    {
+                      name: "Threat Management",
+                      href: "/services/cybersecurity/grc",
+                    },
                   ].map((item) => (
                     <Link
                       key={item.name}
@@ -888,8 +894,14 @@ export default function Navbar() {
                     Collaboration
                   </p>
                   {[
-                    { name: "Training", href: "/" },
-                    { name: "Events", href: "/" },
+                    {
+                      name: "Training",
+                      href: "/services/ai-automation/data-science",
+                    },
+                    {
+                      name: "Events",
+                      href: "/services/ai-automation/data-science",
+                    },
                   ].map((item) => (
                     <Link
                       key={item.name}
@@ -901,11 +913,11 @@ export default function Navbar() {
                   ))}
                   <p className="font-bold text-sm pt-2 text-white">Training</p>
                   {[
-                    { name: "SPS Oil & Gas", href: "/" },
-                    { name: "IBM", href: "/" },
-                    { name: "Google", href: "/" },
-                    { name: "AWS", href: "/" },
-                    { name: "See More", href: "/" },
+                    { name: "SPS Oil & Gas", href: "#" },
+                    { name: "IBM", href: "#" },
+                    { name: "Google", href: "#" },
+                    { name: "AWS", href: "#" },
+                    { name: "See More", href: "#" },
                   ].map((item) => (
                     <Link
                       key={item.name}
@@ -991,10 +1003,22 @@ export default function Navbar() {
                     Healthcare
                   </p>
                   {[
-                    { name: "Compliance-requirements", href: "/" },
-                    { name: "Health Systems", href: "/" },
-                    { name: "Interoperability", href: "/" },
-                    { name: "Multi-Clinic", href: "/" },
+                    {
+                      name: "Compliance-requirements",
+                      href: "/verticals/healthcare/Compliance-requirements",
+                    },
+                    {
+                      name: "Health Systems",
+                      href: "/verticals/healthcare/health-systems",
+                    },
+                    {
+                      name: "Multi-Clinic",
+                      href: "/verticals/healthcare/Compliance-requirements",
+                    },
+                    {
+                      name: "telehealth-remote-patient-monitoring",
+                      href: "/verticals/healthcare/telehealth-amp-remote-patient-monitoring",
+                    },
                   ].map((item) => (
                     <Link
                       key={item.name}
@@ -1021,8 +1045,11 @@ export default function Navbar() {
                   ))}
                   <p className="font-bold text-sm pt-2 text-white">Energy</p>
                   {[
-                    { name: "Electric", href: "/" },
-                    { name: "Oil & Gas", href: "/" },
+                    { name: "Electric", href: "/verticals/Energy/electric" },
+                    {
+                      name: "Oil & Gas",
+                      href: "/verticals/Energy/oil-amp-gas",
+                    },
                   ].map((item) => (
                     <Link
                       key={item.name}
@@ -1034,8 +1061,11 @@ export default function Navbar() {
                   ))}
                   <p className="font-bold text-sm pt-2 text-white">Financial</p>
                   {[
-                    { name: "Banking", href: "/" },
-                    { name: "Insurance", href: "/" },
+                    { name: "Banking", href: "/verticals/financial/banking" },
+                    {
+                      name: "Insurance",
+                      href: "/verticals/financial/banking",
+                    },
                   ].map((item) => (
                     <Link
                       key={item.name}
@@ -1048,7 +1078,9 @@ export default function Navbar() {
                   <p className="font-bold text-sm pt-2 text-white">
                     Telecommunications
                   </p>
-                  {[{ name: "Telcos", href: "/" }].map((item) => (
+                  {[
+                    { name: "Telcos", href: "/verticals/telecommunication" },
+                  ].map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
@@ -1073,17 +1105,24 @@ export default function Navbar() {
               </button>
               {mobileActive === "mspinnlabs" && (
                 <div className="pl-4 pb-4 space-y-2">
-                  {["Overview", "Academia", "Industry", "CoE", "Startups"].map(
-                    (item) => (
-                      <Link
-                        key={item}
-                        href="/"
-                        className="text-sm text-white/80 block"
-                      >
-                        {item}
-                      </Link>
-                    ),
-                  )}
+                  {[
+                    { name: "Overview", href: "/SpinsLab/Overview" },
+                    { name: "Academia", href: "/SpinsLab/Academia" },
+                    { name: "Industry", href: "/SpinsLab/Industry" },
+                    {
+                      name: "Center of Expertise",
+                      href: "/SpinsLab/centers-of-expertise",
+                    },
+                    { name: "Startups", href: "/SpinsLab/Startups" },
+                  ].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm text-white/80 block"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
@@ -1101,19 +1140,34 @@ export default function Navbar() {
               {mobileActive === "mactivities" && (
                 <div className="pl-4 pb-4 space-y-2">
                   {[
-                    "Roundtables",
-                    "Internship 2025",
-                    "Webinars",
-                    "Workshops",
-                    "SIG",
-                    "Training",
+                    { name: "Roundtables", href: "/activities/roundtable" },
+                    {
+                      name: "Internship Program 2025",
+                      href: "/activities/how-it-works",
+                    },
+                    {
+                      name: "Webinars",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "Workshops",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "Special Interest Groups",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "Training",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
                   ].map((item) => (
                     <Link
-                      key={item}
-                      href="/"
+                      key={item.name}
+                      href={item.href}
                       className="text-sm text-white/80 block"
                     >
-                      {item}
+                      {item.name}
                     </Link>
                   ))}
                 </div>
@@ -1132,13 +1186,16 @@ export default function Navbar() {
               </button>
               {mobileActive === "mabout" && (
                 <div className="pl-4 pb-4 space-y-2">
-                  {["Our Story", "Career"].map((item) => (
+                  {[
+                    { name: "Our Story", href: "/" },
+                    { name: "Career", href: "/" },
+                  ].map((item) => (
                     <Link
-                      key={item}
-                      href="/"
+                      key={item.name}
+                      href={item.href}
                       className="text-sm text-white/80 block"
                     >
-                      {item}
+                      {item.name}
                     </Link>
                   ))}
                 </div>
@@ -1160,7 +1217,10 @@ export default function Navbar() {
                   <Link href="/" className="text-sm text-white/80 block">
                     VITA
                   </Link>
-                  <Link href="/" className="text-sm text-white/80 pl-2 block">
+                  <Link
+                    href="/vita-pricing"
+                    className="text-sm text-white/80 pl-2 block"
+                  >
                     Pricing
                   </Link>
                 </div>
@@ -1168,7 +1228,7 @@ export default function Navbar() {
             </div>
 
             <Link
-              href="#contact"
+              href="/Contact-Us"
               onClick={() => setMobileOpen(false)}
               className="block py-3 border-b border-white/10 font-bold text-base text-white"
             >
@@ -1176,7 +1236,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="#internship"
+              href="/activities/how-it-works"
               onClick={() => setMobileOpen(false)}
               className="mt-4 block text-center border border-white/40 rounded-full px-6 py-3 font-bold hover:bg-white hover:text-slate-950 transition-all text-white"
             >
