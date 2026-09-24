@@ -122,7 +122,7 @@ export default function SolutionsGrid() {
                 <Link
                   href={product.link}
                   aria-label={`Read more about ${product.title}`}
-                  className={`absolute -right-12.5 -bottom-7.5 flex items-center justify-center w-15 h-15 bg-[#0f1f4b] text-white rounded-full transition-all duration-500 group-hover:bg-white group-hover:text-[#0f1f4b] group-hover:translate-x-2 group-hover:-translate-y-2`}
+                  className={`absolute -right-12.5 -bottom-7.5 flex items-center justify-center w-15 h-15 bg-[#1e3a8a] text-white rounded-full transition-all duration-500 group-hover:bg-white group-hover:text-[#1e3a8a] group-hover:translate-x-2 group-hover:-translate-y-2`}
                 >
                   <ArrowUpRight className="w-7 h-7" />
                 </Link>

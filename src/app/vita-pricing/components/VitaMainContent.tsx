@@ -711,10 +711,10 @@ export default function PricingCatalog() {
                 type="button"
                 onClick={() => selectTab(tab.key)}
                 className={cx(
-                  "flex items-center gap-2 px-5 py-2.5 text-sm font-medium transition-all duration-200",
+                  "cursor-pointer flex items-center gap-2 px-5 py-2.5 text-sm font-medium transition-all duration-200 rounded-lg border",
                   isActive
-                    ? "bg-[#4F46E5] text-white shadow-md shadow-indigo-500/20 rounded-lg"
-                    : "text-gray-600 hover:bg-gray-100 rounded-lg",
+                    ? "bg-[#1e3a8a] text-white border-[#1e3a8a] shadow-md shadow-indigo-500/20"
+                    : "text-gray-600 border-gray-300 hover:border-[#1e3a8a] hover:text-[#1e3a8a] bg-white",
                 )}
               >
                 <Icon className="h-4 w-4" strokeWidth={2} />
@@ -745,7 +745,7 @@ export default function PricingCatalog() {
                     setPageSize(Number(e.target.value));
                     setPage(1);
                   }}
-                  className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="cursor-pointer rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-700 focus:border-[#1e3a8a] focus:outline-none focus:ring-1 focus:ring-[#1e3a8a]"
                 >
                   {PAGE_SIZE_OPTIONS.map((n) => (
                     <option key={n} value={n}>
@@ -767,7 +767,7 @@ export default function PricingCatalog() {
                   setPage(1);
                 }}
                 placeholder="Search..."
-                className="w-full rounded-md border border-gray-300 bg-white py-1.5 pl-9 pr-3 text-sm text-gray-700 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                className="w-full rounded-md border border-gray-300 bg-white py-1.5 pl-9 pr-3 text-sm text-gray-700 placeholder:text-gray-400 focus:border-[#1e3a8a] focus:outline-none focus:ring-1 focus:ring-[#1e3a8a]"
               />
             </div>
           </div>
@@ -793,7 +793,7 @@ export default function PricingCatalog() {
                           type="button"
                           onClick={() => toggleSort(col.key)}
                           className={cx(
-                            "inline-flex items-center gap-1.5 hover:text-gray-900",
+                            "cursor-pointer inline-flex items-center gap-1.5 hover:text-gray-900",
                             col.align === "right" &&
                               "flex-row-reverse justify-end w-full",
                             col.align === "center" && "mx-auto",
@@ -884,7 +884,7 @@ export default function PricingCatalog() {
                 type="button"
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={safePage === 1}
-                className="flex items-center gap-1 rounded-md px-2.5 py-1.5 text-sm text-gray-500 transition hover:bg-gray-100 hover:text-gray-900 disabled:pointer-events-none disabled:opacity-40"
+                className="cursor-pointer flex items-center gap-1 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-sm text-gray-600 transition hover:border-[#1e3a8a] hover:text-[#1e3a8a] disabled:pointer-events-none disabled:opacity-40"
               >
                 <ChevronLeft className="h-4 w-4" />
                 Previous
@@ -900,10 +900,10 @@ export default function PricingCatalog() {
                     type="button"
                     onClick={() => setPage(p)}
                     className={cx(
-                      "h-8 w-8 rounded-md text-sm font-medium transition",
+                      "cursor-pointer h-8 w-8 rounded-md border text-sm font-medium transition",
                       p === safePage
-                        ? "bg-[#4F46E5] text-white shadow-sm"
-                        : "text-gray-600 hover:bg-gray-100",
+                        ? "bg-[#1e3a8a] text-white border-[#1e3a8a] shadow-sm"
+                        : "text-gray-600 border-gray-300 bg-white hover:border-[#1e3a8a] hover:text-[#1e3a8a]",
                     )}
                   >
                     {p}
@@ -914,7 +914,7 @@ export default function PricingCatalog() {
                 type="button"
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={safePage === totalPages}
-                className="flex items-center gap-1 rounded-md px-2.5 py-1.5 text-sm text-gray-500 transition hover:bg-gray-100 hover:text-gray-900 disabled:pointer-events-none disabled:opacity-40"
+                className="cursor-pointer flex items-center gap-1 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-sm text-gray-600 transition hover:border-[#1e3a8a] hover:text-[#1e3a8a] disabled:pointer-events-none disabled:opacity-40"
               >
                 Next
                 <ChevronRight className="h-4 w-4" />

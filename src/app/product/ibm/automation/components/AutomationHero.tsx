@@ -62,7 +62,7 @@ export default function DetailHero() {
       </div>
 
       <div className="relative z-10 container mx-auto max-w-350 px-6 py-32 lg:py-44 text-center">
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
           IBM Automation Watsonx <br /> Orchestrate
         </h1>
 

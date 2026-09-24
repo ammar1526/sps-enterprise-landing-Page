@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function OverviewHero() {
   return (
-    <section className="relative w-full h-125 flex items-center bg-linear-to-r from-slate-900 to-blue-950 overflow-hidden">
+    <section className="relative w-full h-150 flex items-center bg-linear-to-r from-slate-900 to-blue-950 overflow-hidden">
       <Image
         src="/images/spinnlabHerobg.png"
         alt="SPINN Labs Hero"

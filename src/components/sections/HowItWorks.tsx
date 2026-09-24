@@ -71,7 +71,7 @@ export default function HowItWorks() {
   return (
     <section
       ref={sectionRef}
-      className="relative pt-10 pb-5 sm:pt-12.5 md:pt-17.5 md:pb-10 2xxl:pt-25 2xxl:pb-17.5 mt-10 bg-blue-100"
+      className="relative pt-10 pb-5 sm:pt-12.5 md:pt-17.5 md:pb-10 2xxl:pt-25 2xxl:pb-17.5 mt-10 bg-white"
     >
       <div className="container mx-auto max-w-350 px-4">
         <div className="flex flex-col xl:flex-row gap-10 xl:gap-0">

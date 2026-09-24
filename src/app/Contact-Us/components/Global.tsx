@@ -80,7 +80,13 @@ export default function Global() {
               key={item.region}
               className="group relative bg-white border border-slate-100 rounded-2xl p-6 hover:shadow-[0_15px_30px_rgba(14,79,163,0.05)] hover:-translate-y-1 transition-all duration-300 ease-in-out overflow-hidden"
             >
-              <div className="absolute left-0 top-0 h-full w-1 bg-transparent transition-all duration-300 group-hover:bg-cyan-400 group-hover:shadow-[0_0_20px_#22d3ee,0_0_40px_#22d3ee,0_0_60px_#22d3ee]"></div>
+              <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="absolute left-0 top-1/2 bottom-0 w-0.5 bg-[#1e3a8a] shadow-[0_0_8px_#1e3a8a,0_0_16px_#1e3a8a]" />
+                <div className="absolute left-0 top-0 h-0.5 w-1/2 bg-[#1e3a8a] shadow-[0_0_8px_#1e3a8a,0_0_16px_#1e3a8a]" />
+                <div className="absolute right-0 top-1/2 bottom-0 w-0.5 bg-[#1e3a8a] shadow-[0_0_8px_#1e3a8a,0_0_16px_#1e3a8a]" />
+                <div className="absolute right-0 top-0 h-0.5 w-1/2 bg-[#1e3a8a] shadow-[0_0_8px_#1e3a8a,0_0_16px_#1e3a8a]" />
+              </div>
+
               <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                 {item.icon}
               </div>

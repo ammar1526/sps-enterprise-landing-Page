@@ -19,56 +19,60 @@ export default function AboutRoundtable() {
     <section className="w-full bg-blue-50 py-10">
       <div className="px-10 py-2">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-end">
-          <div className="w-full">
-            <h2 className="text-3xl font-bold text-slate-900 mb-3">
-              About Roundtable
-            </h2>
-            <p className="text-base text-slate-700 text-justify mb-3 leading-relaxed">
-              SPS is hosting a monthly Information Security Officer Roundtable
-              for the Commonwealth of Virginia, bringing together cybersecurity
-              leaders across state and local government to collaborate, share,
-              and strengthen collective security posture. This invite-only forum
-              will be led by Dave Shure, Information Security Officer for the
-              Virginia Department of Small Business and Supplier Diversity
-              (SBSD), who has led SBSD&apos;s journey toward compliance with
-              SEC530 and NIST 800-53 Control Framework.
-            </p>
+          <div className="w-full flex flex-col gap-6">
+            <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-[0_10px_40px_-15px_rgba(15,31,75,0.25)] border border-white/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(15,31,75,0.35)]">
+              <h2 className="text-3xl font-bold text-slate-900 mb-3">
+                About Roundtable
+              </h2>
+              <p className="text-base text-slate-700 text-justify mb-3 leading-relaxed">
+                SPS is hosting a monthly Information Security Officer Roundtable
+                for the Commonwealth of Virginia, bringing together
+                cybersecurity leaders across state and local government to
+                collaborate, share, and strengthen collective security posture.
+                This invite-only forum will be led by Dave Shure, Information
+                Security Officer for the Virginia Department of Small Business
+                and Supplier Diversity (SBSD), who has led SBSD&apos;s journey
+                toward compliance with SEC530 and NIST 800-53 Control Framework.
+              </p>
 
-            <ul className="flex flex-col text-slate-700 font-medium mb-3">
-              {details.map((item, i) => (
-                <li
-                  key={i}
-                  className="w-full relative pl-8 p-1 text-base font-bold flex items-center gap-2"
-                >
-                  <Check className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-700" />
-                  <span>
-                    {item.label}{" "}
-                    <span className="font-medium">{item.value}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
+              <ul className="flex flex-col text-slate-700 font-medium mb-0">
+                {details.map((item, i) => (
+                  <li
+                    key={i}
+                    className="w-full relative pl-8 p-1 text-base font-bold flex items-center gap-2"
+                  >
+                    <Check className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-700" />
+                    <span>
+                      {item.label}{" "}
+                      <span className="font-medium">{item.value}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-            <h2 className="text-3xl font-bold text-slate-900 mb-3">
-              Why Attend
-            </h2>
-            <p className="text-base text-slate-700 mb-3">
-              It is a peer collaboration forum. Participants will:
-            </p>
-            <ul className="flex flex-col text-slate-700 font-medium mb-3">
-              {attendPoints.map((point, i) => (
-                <li
-                  key={i}
-                  className="w-full relative pl-8 p-1 text-base font-medium flex items-start gap-2"
-                >
-                  <Check className="absolute left-0 top-2 w-4 h-4 text-blue-700" />
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-base text-slate-700 mb-4">
-              Contribute to improving cybersecurity across Virginia
-            </p>
+            <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-[0_10px_40px_-15px_rgba(15,31,75,0.25)] border border-white/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(15,31,75,0.35)]">
+              <h2 className="text-3xl font-bold text-slate-900 mb-3">
+                Why Attend
+              </h2>
+              <p className="text-base text-slate-700 mb-3">
+                It is a peer collaboration forum. Participants will:
+              </p>
+              <ul className="flex flex-col text-slate-700 font-medium mb-3">
+                {attendPoints.map((point, i) => (
+                  <li
+                    key={i}
+                    className="w-full relative pl-8 p-1 text-base font-medium flex items-start gap-2"
+                  >
+                    <Check className="absolute left-0 top-2 w-4 h-4 text-blue-700" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-base text-slate-700 mb-0">
+                Contribute to improving cybersecurity across Virginia
+              </p>
+            </div>
           </div>
 
           <div className="w-full">

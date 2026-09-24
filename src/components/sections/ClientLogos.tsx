@@ -208,15 +208,22 @@ export default function CustomersPage() {
     const container = scrollRef.current;
     if (!container) return;
 
+    let frame = 0;
+
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
-      container.scrollLeft += e.deltaY;
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        container.scrollLeft += e.deltaY;
+        frame = 0;
+      });
     };
 
     container.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
       container.removeEventListener("wheel", handleWheel);
+      if (frame) cancelAnimationFrame(frame);
     };
   }, []);
 
@@ -225,7 +232,7 @@ export default function CustomersPage() {
       <div className="max-w-[1600px] w-full">
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 mb-10">
           <div className="lg:w-1/4 w-full text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl font-bold text-[#0f1f4b] tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0f1f4b] tracking-tight leading-tight">
               Customers We <br /> Are Proud To <br /> Work With.
             </h1>
           </div>
@@ -236,14 +243,19 @@ export default function CustomersPage() {
 
             <div
               ref={scrollRef}
-              className="flex gap-6 overflow-x-auto scrollbar-hide py-10 px-4 cursor-grab active:cursor-grabbing"
+              className="flex overflow-x-auto scrollbar-hide py-16 px-4 cursor-grab active:cursor-grabbing"
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
-              <div className="flex gap-6 animate-marquee shrink-0">
+              <div className="flex gap-16 sm:gap-20 lg:gap-24 animate-marquee shrink-0">
                 {LOOP_DATA.map((client, index) => (
                   <div
                     key={`${client.id}-${index}`}
-                    className="relative shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 bg-white rounded-full border-4 border-[#0f1f4b] shadow-lg flex items-center justify-center p-4 transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:z-30 overflow-hidden cursor-pointer"
+                    className="relative shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 bg-white rounded-full shadow-lg flex items-center justify-center p-6 transition-shadow duration-300 hover:shadow-2xl overflow-hidden"
+                    style={{
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                      contain: "layout paint style",
+                    }}
                   >
                     <div className="relative w-full h-full">
                       <Image
@@ -252,7 +264,7 @@ export default function CustomersPage() {
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 768px) 25vw, (max-width: 1024px) 16vw, 9vw"
                         className="object-contain"
-                        loading="lazy"
+                        draggable={false}
                       />
                     </div>
                   </div>
@@ -266,16 +278,20 @@ export default function CustomersPage() {
       <style>{`
         @keyframes marquee {
           0% {
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translate3d(-50%, 0, 0);
           }
         }
 
         .animate-marquee {
           display: flex;
-          animation: marquee 60s linear infinite;
+          animation: marquee 90s linear infinite;
+          will-change: transform;
+          transform: translateZ(0);
+          backface-visibility: hidden;
+          contain: layout paint style;
         }
 
         .animate-marquee:hover {
@@ -289,6 +305,12 @@ export default function CustomersPage() {
         .scrollbar-hide {
           -ms-overflow-style: none;
           scrollbar-width: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .animate-marquee {
+            animation: none;
+          }
         }
       `}</style>
     </div>

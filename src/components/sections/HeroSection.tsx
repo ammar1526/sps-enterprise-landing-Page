@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 interface Slide {
@@ -63,6 +64,7 @@ const slides: Slide[] = [
 ];
 
 export default function HeroSection() {
+  const router = useRouter();
   const [current, setCurrent] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -96,11 +98,20 @@ export default function HeroSection() {
     };
   }, [isModalOpen]);
 
-  const handleSecondaryClick = (slide: Slide) => {
-    if (slide.secondaryOpensModal) {
-      setIsModalOpen(true);
-    }
-  };
+  const handlePrimaryClick = useCallback(() => {
+    setIsModalOpen(true);
+  }, []);
+
+  const handleSecondaryClick = useCallback(
+    (slide: Slide) => {
+      if (slide.secondaryOpensModal) {
+        setIsModalOpen(true);
+      } else {
+        router.push("/Contact-Us");
+      }
+    },
+    [router],
+  );
 
   useEffect(() => {
     if (!isModalOpen) return;
@@ -167,12 +178,17 @@ export default function HeroSection() {
               )}
 
               <div className="mt-8 flex flex-wrap items-center gap-5">
-                <button className="bg-[#4d75e6] hover:bg-[#1e40af] border-blue-950 text-white font-semibold px-8 py-3.5 rounded-lg transition shadow-2xl text-lg focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-white">
+                <button
+                  type="button"
+                  onClick={handlePrimaryClick}
+                  className="cursor-pointer bg-[#4d75e6] hover:bg-[#1e40af] border-blue-950 text-white font-semibold px-8 py-3.5 rounded-lg transition shadow-2xl text-lg focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
                   {slide.primaryBtnText}
                 </button>
                 <button
+                  type="button"
                   onClick={() => handleSecondaryClick(slide)}
-                  className="bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-white font-semibold px-8 py-3.5 rounded-lg transition text-lg focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="cursor-pointer bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-white font-semibold px-8 py-3.5 rounded-lg transition text-lg focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   {slide.secondaryBtnText}
                 </button>
@@ -185,14 +201,14 @@ export default function HeroSection() {
       <button
         onClick={prevSlide}
         aria-label="Previous slide"
-        className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/50 hover:bg-slate-900/80 text-white backdrop-blur-sm transition focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-white"
+        className="cursor-pointer absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/50 hover:bg-slate-900/80 text-white backdrop-blur-sm transition focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white"
       >
         <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
       </button>
       <button
         onClick={nextSlide}
         aria-label="Next slide"
-        className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/50 hover:bg-slate-900/80 text-white backdrop-blur-sm transition focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-white"
+        className="cursor-pointer absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/50 hover:bg-slate-900/80 text-white backdrop-blur-sm transition focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white"
       >
         <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
       </button>
@@ -207,7 +223,7 @@ export default function HeroSection() {
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
             aria-current={index === current ? "true" : undefined}
-            className={`h-1.5 rounded-full transition-all duration-300 focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-white ${
+            className={`cursor-pointer h-1.5 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white ${
               index === current
                 ? "w-8 bg-[#1d4ed8]"
                 : "w-1.5 bg-white/40 hover:bg-white/60"
@@ -238,7 +254,7 @@ export default function HeroSection() {
               <button
                 onClick={() => setIsModalOpen(false)}
                 aria-label="Close modal"
-                className="text-slate-400 hover:text-slate-700 transition focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#1d4ed8] rounded"
+                className="cursor-pointer text-slate-400 hover:text-slate-700 transition focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#1d4ed8] rounded"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -318,13 +334,13 @@ export default function HeroSection() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="text-xs font-bold tracking-wide text-slate-500 hover:text-slate-800 transition focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-[#1d4ed8] rounded"
+                  className="cursor-pointer text-xs font-bold tracking-wide text-slate-500 hover:text-slate-800 transition focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#1d4ed8] rounded"
                 >
                   CANCEL
                 </button>
                 <button
                   type="submit"
-                  className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white font-semibold px-6 py-2 rounded-lg text-sm transition focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="cursor-pointer bg-[#1d4ed8] hover:bg-[#1e40af] text-white font-semibold px-6 py-2 rounded-lg text-sm transition focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   SEND MESSAGE
                 </button>

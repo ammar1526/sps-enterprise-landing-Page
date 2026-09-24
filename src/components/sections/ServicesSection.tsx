@@ -57,7 +57,7 @@ const Card = ({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Read more about ${title}`}
-        className="absolute -right-12.5 -bottom-7.5 flex items-center justify-center w-15 h-15 bg-[#0f1f4b] text-white rounded-full transition-all duration-500 group-hover:bg-[#1e3a8a] group-hover:text-white group-hover:translate-x-2 group-hover:-translate-y-2"
+        className="absolute -right-12.5 -bottom-7.5 flex items-center justify-center w-15 h-15 bg-[#1e3a8a] text-white rounded-full transition-all duration-500 group-hover:bg-[#3b6fd4] group-hover:text-white group-hover:translate-x-2 group-hover:-translate-y-2"
       >
         <ArrowUpRight className="w-7 h-7" />
       </a>
@@ -380,10 +380,12 @@ export default function ServicesSection() {
                   return (
                     <li
                       key={tab.id}
-                      className="border border-[#416482] rounded-[10px] transition-all duration-300"
+                      className="rounded-[10px] transition-all duration-300"
                       style={{
-                        backgroundColor: isActive ? "#0f1f4b" : "transparent",
-                        borderColor: isActive ? "#0f1f4b" : "#416482",
+                        backgroundColor: isActive ? "#1e3a8a" : "transparent",
+                        border: isActive
+                          ? "1px solid #1e3a8a"
+                          : "1px solid #416482",
                       }}
                     >
                       <button
