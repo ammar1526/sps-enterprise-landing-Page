@@ -105,7 +105,7 @@ export default function OverviewExpertise() {
                 </p>
               </div>
               <div className="shrink-0">
-                <button className="inline-flex items-center gap-2 bg-linear-to-r from-[#7494ec] to-[#ef5fb3] text-white px-8 py-3.5 rounded-lg font-semibold hover:shadow-lg hover:shadow-[#7494ec]/30 transition-all group cursor-pointer">
+                <button className="inline-flex items-center gap-2 bg-[#4d75e6] text-white px-8 py-3.5 rounded-lg font-semibold hover:shadow-lg hover:shadow-[#7494ec]/30 transition-all group cursor-pointer">
                   Register Now
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>

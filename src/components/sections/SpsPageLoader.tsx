@@ -16,6 +16,7 @@ export default function SpsPageLoader() {
     const duration = isFirstLoad.current ? 1400 : 800;
     isFirstLoad.current = false;
 
+    const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     const start = performance.now();
@@ -29,10 +30,11 @@ export default function SpsPageLoader() {
       if (pct < 100) {
         raf = requestAnimationFrame(tick);
       } else {
+        document.body.style.overflow = prevOverflow;
+
         setPhase("revealing");
         revealTimer = setTimeout(() => {
           setPhase("done");
-          document.body.style.overflow = "";
         }, 700);
       }
     };
@@ -42,7 +44,7 @@ export default function SpsPageLoader() {
     return () => {
       cancelAnimationFrame(raf);
       if (revealTimer) clearTimeout(revealTimer);
-      document.body.style.overflow = "";
+      document.body.style.overflow = prevOverflow;
     };
   }, [pathname]);
 

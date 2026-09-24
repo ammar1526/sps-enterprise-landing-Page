@@ -18,6 +18,10 @@ import {
   Circle,
   ChartBar,
 } from "lucide-react";
+type IconComponent = React.ComponentType<{ className?: string }>;
+
+const EXTERNAL_LINK =
+  "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php";
 
 const Card = ({
   icon: Icon,
@@ -25,12 +29,12 @@ const Card = ({
   children,
   href,
 }: {
-  icon: any;
+  icon: IconComponent;
   title: string;
   children: React.ReactNode;
   href: string;
 }) => (
-  <div className="group relative rounded-[30px] p-7.5 h-95 flex flex-col bg-slate-50 border border-slate-200 overflow-hidden transition-all duration-500 hover:bg-[#0f1f4b] hover:border-[#0f1f4b] shrink-0 w-[301.25px]">
+  <div className="group relative rounded-[30px] p-7.5 h-95 flex flex-col bg-slate-50 border border-slate-200 overflow-hidden transition-all duration-500 hover:bg-[#193378] hover:border-[#0f1f4b] shrink-0 w-[301.25px]">
     <div className="mb-auto relative z-10">
       <div className="relative inline-block mb-2.5">
         <Icon className="w-14 h-14 text-[#0f1f4b] group-hover:text-white transition-colors duration-500" />
@@ -50,8 +54,10 @@ const Card = ({
       </span>
       <a
         href={href}
-        aria-label="Read more"
-        className="absolute -right-12.5 -bottom-7.5 flex items-center justify-center w-15 h-15 bg-[#0f1f4b] text-white rounded-full transition-all duration-500 group-hover:bg-white group-hover:text-[#0f1f4b] group-hover:translate-x-2 group-hover:-translate-y-2"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Read more about ${title}`}
+        className="absolute -right-12.5 -bottom-7.5 flex items-center justify-center w-15 h-15 bg-[#0f1f4b] text-white rounded-full transition-all duration-500 group-hover:bg-[#1e3a8a] group-hover:text-white group-hover:translate-x-2 group-hover:-translate-y-2"
       >
         <ArrowUpRight className="w-7 h-7" />
       </a>
@@ -76,11 +82,7 @@ const tabs = [
           </p>
         </div>
         <div className="flex gap-8.75 overflow-x-auto pb-10 pt-5 px-5 carousel-track no-scrollbar">
-          <Card
-            icon={Network}
-            title="Network Security"
-            href="https://www.spsnet.com/service-detail/security/network-security/network-visibility-operations-services/"
-          >
+          <Card icon={Network} title="Network Security" href={EXTERNAL_LINK}>
             <a
               href="https://www.spsnet.com/service-detail/security/network-security/network-visibility-operations-services/"
               className="hover:underline"
@@ -104,57 +106,29 @@ const tabs = [
             .
           </Card>
 
-          <Card
-            icon={Server}
-            title="SMaaS"
-            href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-          >
-            <a
-              href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-              className="hover:underline"
-            >
+          <Card icon={Server} title="SMaaS" href={EXTERNAL_LINK}>
+            <a href={EXTERNAL_LINK} className="hover:underline">
               Service Management as a Service
             </a>
             , including cloud monitoring and operations solutions.
           </Card>
 
-          <Card
-            icon={ShieldCheck}
-            title="GRC"
-            href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-          >
-            <a
-              href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-              className="hover:underline"
-            >
-              Governance, Risk & Compliance
+          <Card icon={ShieldCheck} title="GRC" href={EXTERNAL_LINK}>
+            <a href={EXTERNAL_LINK} className="hover:underline">
+              Governance, Risk &amp; Compliance
             </a>{" "}
             solutions for enterprise-wide policies and controls.
           </Card>
 
-          <Card
-            icon={UserCheck}
-            title="Identity & Access"
-            href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-          >
-            <a
-              href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-              className="hover:underline"
-            >
-              Identity & Access Management
+          <Card icon={UserCheck} title="Identity & Access" href={EXTERNAL_LINK}>
+            <a href={EXTERNAL_LINK} className="hover:underline">
+              Identity &amp; Access Management
             </a>{" "}
             solutions for secure authentication and authorization.
           </Card>
 
-          <Card
-            icon={Bug}
-            title="Threat Management"
-            href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-          >
-            <a
-              href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-              className="hover:underline"
-            >
+          <Card icon={Bug} title="Threat Management" href={EXTERNAL_LINK}>
+            <a href={EXTERNAL_LINK} className="hover:underline">
               Threat Management
             </a>{" "}
             solutions for proactive detection and mitigation of cyber threats.
@@ -178,11 +152,7 @@ const tabs = [
           </p>
         </div>
         <div className="flex gap-8.75 overflow-x-auto pb-10 pt-5 px-5 carousel-track no-scrollbar">
-          <Card
-            icon={ChartBar}
-            title="DevOps"
-            href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-          >
+          <Card icon={ChartBar} title="DevOps" href={EXTERNAL_LINK}>
             <ul className="space-y-1">
               <li>
                 <a
@@ -206,7 +176,7 @@ const tabs = [
           <Card
             icon={CloudUpload}
             title="Migration Services"
-            href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
+            href={EXTERNAL_LINK}
           >
             <ul className="space-y-1">
               <li>
@@ -247,17 +217,13 @@ const tabs = [
       <>
         <div className="sm:mb-7.5 mb-5 mt-5">
           <p className="text-sm text-center px-5 text-slate-600">
-            SPS AI & Automation team offers solutions in Automation (Robotic
+            SPS AI &amp; Automation team offers solutions in Automation (Robotic
             Process Automation, Workflow Automation) and Data Science (Machine
             Learning, Predictive Analytics, AI Model Development).
           </p>
         </div>
         <div className="flex gap-8.75 overflow-x-auto pb-10 pt-5 px-5 carousel-track no-scrollbar">
-          <Card
-            icon={Bot}
-            title="Data Science"
-            href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-          >
+          <Card icon={Bot} title="Data Science" href={EXTERNAL_LINK}>
             <ul className="space-y-1 line-height-1">
               <li>
                 <a
@@ -278,11 +244,7 @@ const tabs = [
             </ul>
           </Card>
 
-          <Card
-            icon={BrainCircuit}
-            title="Data Science"
-            href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-          >
+          <Card icon={BrainCircuit} title="Data Science" href={EXTERNAL_LINK}>
             <ul className="space-y-1">
               <li>
                 <a
@@ -327,44 +289,27 @@ const tabs = [
           </p>
         </div>
         <div className="flex gap-8.75 overflow-x-auto pb-10 pt-5 px-5 carousel-track no-scrollbar">
-          <Card
-            icon={GraduationCap}
-            title="Learning"
-            href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-          >
+          <Card icon={GraduationCap} title="Learning" href={EXTERNAL_LINK}>
             <ul className="space-y-1">
               <li>
-                <a
-                  href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-                  className="hover:underline"
-                >
+                <a href={EXTERNAL_LINK} className="hover:underline">
                   Training Programs
                 </a>
               </li>
               <li>
-                <a
-                  href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-                  className="hover:underline"
-                >
+                <a href={EXTERNAL_LINK} className="hover:underline">
                   Workshops
                 </a>
               </li>
               <li>
-                <a
-                  href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-                  className="hover:underline"
-                >
+                <a href={EXTERNAL_LINK} className="hover:underline">
                   Knowledge Sharing
                 </a>
               </li>
             </ul>
           </Card>
 
-          <Card
-            icon={CalendarDays}
-            title="Events"
-            href="http://localhost/my_sites/bms/temp-web/sps-enterprise/comingsoon.php"
-          >
+          <Card icon={CalendarDays} title="Events" href={EXTERNAL_LINK}>
             <ul className="space-y-1">
               <li>
                 <a
@@ -387,7 +332,7 @@ const tabs = [
                   href="https://www.spsnet.com/service-detail/events/events/recording-editing/"
                   className="hover:underline"
                 >
-                  Recording & Editing
+                  Recording &amp; Editing
                 </a>
               </li>
             </ul>
@@ -403,16 +348,19 @@ export default function ServicesSection() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const track = document.querySelector(
-        `.carousel-track:not(.hidden)`,
+      const activeContent = document.querySelector(
+        ".tab-content.block .carousel-track",
       ) as HTMLElement | null;
-      if (track) {
-        const scrollAmount = 336;
-        track.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      if (!activeContent) return;
 
-        if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
-          track.scrollTo({ left: 0, behavior: "smooth" });
-        }
+      const scrollAmount = 336;
+      activeContent.scrollBy({ left: scrollAmount, behavior: "smooth" });
+
+      if (
+        activeContent.scrollLeft + activeContent.clientWidth >=
+        activeContent.scrollWidth - 10
+      ) {
+        activeContent.scrollTo({ left: 0, behavior: "smooth" });
       }
     }, 5000);
 

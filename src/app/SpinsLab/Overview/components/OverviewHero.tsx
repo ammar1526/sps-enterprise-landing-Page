@@ -8,7 +8,7 @@ export default function OverviewHero() {
         src="/images/spinnlabHerobg.png"
         alt="SPINN Labs Hero"
         fill
-        className="object-cover opacity-50 mt-12"
+        className="object-cover opacity-50"
         priority
       />
       <div className="relative z-10 container mx-auto px-6 mt-20">

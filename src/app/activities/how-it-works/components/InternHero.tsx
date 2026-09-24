@@ -6,7 +6,7 @@ export default function InternshipHero() {
   return (
     <section className="relative w-full min-h-125 md:min-h-150 flex items-center justify-center bg-slate-900 overflow-hidden">
       <Image
-        src="/images/internship/internshipherobg.jpg"
+        src="/images/internship/banner.webp"
         alt="SPS Internship Program"
         fill
         className="object-cover"

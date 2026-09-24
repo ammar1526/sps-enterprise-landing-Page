@@ -13,9 +13,10 @@ export default function OverviewHero() {
         className="object-cover opacity-50"
         priority
       />
-      <div className="relative z-10 container mx-auto px-6 mt-22">
+      <div className="absolute inset-0 bg-blue-800/20" />
+      <div className="relative z-10 container  mx-auto px-6 mt-18">
         <div className="max-w-4xl">
-          <span className="inline-block py-1 px-4 bg-[#7494ec]/30 border border-[#7494ec] rounded-full text-sm font-semibold text-[#7494ec] mb-2">
+          <span className="inline-block py-1 px-4 bg-[#7494ec]/50 border border-[#7494ec] rounded-full text-sm font-semibold text-[#7494ec] mb-2">
             SPINNLAB
           </span>
           <h1 className="text-5xl md:text-5xl font-bold text-slate-100 leading-tight mb-5 drop-shadow-xl">
@@ -29,7 +30,7 @@ export default function OverviewHero() {
             and shaping the future of technology.
           </p>
           <div className="mt-5">
-            <button className="inline-flex items-center gap-2 bg-linear-to-r from-[#7494ec] to-[#ef5fb3] text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-[#7494ec]/40 transition-all group cursor-pointer">
+            <button className="inline-flex items-center gap-2 bg-[#4d75e6] text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-[#7494ec]/40 transition-all group cursor-pointer">
               Join Us
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>

@@ -156,10 +156,22 @@ export default function Navbar() {
                   </h4>
                   <ul className="space-y-2 text-slate-600">
                     {[
-                      { name: "Cloud Management", href: "/" },
-                      { name: "Analytics Tools", href: "/" },
-                      { name: "IoT Solutions", href: "/" },
-                      { name: "Blockchain", href: "/" },
+                      {
+                        name: "Cloud Management",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
+                      {
+                        name: "Analytics Tools",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
+                      {
+                        name: "IoT Solutions",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
+                      {
+                        name: "Blockchain",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -307,11 +319,26 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Training</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "SPS Oil & Gas", href: "#" },
-                      { name: "IBM", href: "#" },
-                      { name: "Google", href: "#" },
-                      { name: "AWS", href: "#" },
-                      { name: "See More", href: "#" },
+                      {
+                        name: "SPS Oil & Gas",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
+                      {
+                        name: "IBM",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
+                      {
+                        name: "Google",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
+                      {
+                        name: "AWS",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
+                      {
+                        name: "See More",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -456,10 +483,22 @@ export default function Navbar() {
                   <h4 className="font-bold mb-3">Retail</h4>
                   <ul className="space-y-1.5 text-slate-600">
                     {[
-                      { name: "Convenience Store", href: "/" },
-                      { name: "Marketing", href: "/" },
-                      { name: "Omni-channel", href: "/" },
-                      { name: "Personalization", href: "/" },
+                      {
+                        name: "Convenience Store",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
+                      {
+                        name: "Marketing",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
+                      {
+                        name: "Omni-channel",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
+                      {
+                        name: "Personalization",
+                        href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                      },
                     ].map((item) => (
                       <li
                         key={item.name}
@@ -629,8 +668,8 @@ export default function Navbar() {
               }`}
             >
               {[
-                { name: "Our Story", href: "/" },
-                { name: "Career", href: "/" },
+                { name: "Our Story", href: "/About-Us/our-story" },
+                { name: "Career", href: "/About-Us/career" },
               ].map((item) => (
                 <div
                   key={item.name}
@@ -790,10 +829,22 @@ export default function Navbar() {
                   ))}
                   <p className="font-bold text-sm pt-2 text-white">Others</p>
                   {[
-                    { name: "Cloud Management", href: "/" },
-                    { name: "Analytics Tools", href: "/" },
-                    { name: "IoT Solutions", href: "/" },
-                    { name: "Blockchain", href: "/" },
+                    {
+                      name: "Cloud Management",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "Analytics Tools",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "IoT Solutions",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "Blockchain",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
                   ].map((item) => (
                     <Link
                       key={item.name}
@@ -913,11 +964,26 @@ export default function Navbar() {
                   ))}
                   <p className="font-bold text-sm pt-2 text-white">Training</p>
                   {[
-                    { name: "SPS Oil & Gas", href: "#" },
-                    { name: "IBM", href: "#" },
-                    { name: "Google", href: "#" },
-                    { name: "AWS", href: "#" },
-                    { name: "See More", href: "#" },
+                    {
+                      name: "SPS Oil & Gas",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "IBM",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "Google",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "AWS",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "See More",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
                   ].map((item) => (
                     <Link
                       key={item.name}
@@ -1030,10 +1096,22 @@ export default function Navbar() {
                   ))}
                   <p className="font-bold text-sm pt-2 text-white">Retail</p>
                   {[
-                    { name: "Convenience Store", href: "/" },
-                    { name: "Marketing", href: "/" },
-                    { name: "Omni-channel", href: "/" },
-                    { name: "Personalization", href: "/" },
+                    {
+                      name: "Convenience Store",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "Marketing",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "Omni-channel",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
+                    {
+                      name: "Personalization",
+                      href: "https://spsnet.com/temp-web/sps-enterprise/comingsoon.php",
+                    },
                   ].map((item) => (
                     <Link
                       key={item.name}
@@ -1187,8 +1265,8 @@ export default function Navbar() {
               {mobileActive === "mabout" && (
                 <div className="pl-4 pb-4 space-y-2">
                   {[
-                    { name: "Our Story", href: "/" },
-                    { name: "Career", href: "/" },
+                    { name: "Our Story", href: "/About-Us/our-story" },
+                    { name: "Career", href: "/About-Us/career" },
                   ].map((item) => (
                     <Link
                       key={item.name}
